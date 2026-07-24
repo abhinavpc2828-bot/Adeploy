@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+
+      .cart-header,
+      .cart-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .cart-header {
+        font-weight: bold;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+      }
+
+      .cart-row {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .product {
+        flex: 1;
+        color: #333;
+        font-weight: 600;
+      }
+
+      .desc {
+        font-size: 12px;
+        color: gray;
+        margin-top: 4px;
+      }
+
+      .price {
+        width: 90px;
+        color: #1e88e5;
+        font-weight: bold;
+        text-align: right;
+      }
+
+      .qty {
+        width: 130px;
+        color: #e53935;
+        font-weight: bold;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .qty p {
+        margin: 0;
+        min-width: 20px;
+      }
+
+      .qty button {
+        padding: 4px 8px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        background: white;
+        border-radius: 4px;
+      }
+
+      .cart-bottom {
+        margin-top: 20px;
+        padding: 12px 16px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: #f9f9f9;
+      }
+
+      .cart-bottom h3 {
+        margin: 0 0 10px;
+      }
+
+      .cart-item-line {
+        display: flex;
+        justify-content: space-between;
+        margin: 6px 0;
+      }
+
+      .cart-item-name {
+        font-weight: 600;
+      }
+
+      .cart-item-value {
+        color: #1e88e5;
+      }
+
+      .cart-total-row {
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px solid #ccc;
+        font-weight: bold;
+        color: #43a047;
+      }
+    </style>
+    <div class="cart-header">
+      <span class="product">Product</span>
+      <span class="price">Price</span>
+      <span class="qty">Qty</span>
+    </div>
+
+    <div class="cart-row">
+      <div class="product">
+        <div>Aloo</div>
+        <div class="desc">Fresh potatoes from local farm</div>
+      </div>
+      <div class="price">₹20</div>
+      <div class="qty">
+        <button type="button" onclick="minus()">-</button>
+        <p id="cng">0</p>
+        <button type="button" onclick="plus()">+</button>
+      </div>
+    </div>
+
+    <div class="cart-row">
+      <div class="product">
+        <div>Onion</div>
+        <div class="desc">Sweet and juicy onions</div>
+      </div>
+      <div class="price">₹15</div>
+      <div class="qty">
+        <button type="button" onclick="minusOnion()">-</button>
+        <p id="onionQty">0</p>
+        <button type="button" onclick="plusOnion()">+</button>
+      </div>
+    </div>
+    <div class="cart-row">
+      <div class="product">
+        <div>Gobi</div>
+        <div class="desc">Big nd Quality</div>
+      </div>
+      <div class="price">₹30</div>
+      <div class="qty">
+        <button type="button" onclick="minusGobi()">-</button>
+        <p id="gobiQty">0</p>
+        <button type="button" onclick="plusGobi()">+</button>
+      </div>
+    </div>
+
+    <div class="cart-row">
+      <div class="product">
+        <div>Capscicum</div>
+        <div class="desc">Big nd Quality Capscicum</div>
+      </div>
+      <div class="price">₹40</div>
+      <div class="qty">
+        <button type="button" onclick="minusCapscicum()">-</button>
+        <p id="CapscicumQty">0</p>
+        <button type="button" onclick="plusCapscicum()">+</button>
+      </div>
+    </div>
+    <div class="cart-bottom">
+      <h3>Cart Summary</h3>
+      <div class="cart-item-line">
+        <span class="cart-item-name">Aloo</span>
+        <span class="cart-item-value" id="alooSummary">0</span>
+      </div>
+      <div class="cart-item-line">
+        <span class="cart-item-name">Onion</span>
+        <span class="cart-item-value" id="onionSummary">0</span>
+      </div>
+      <div class="cart-item-line">
+        <span class="cart-item-name">Gobi</span>
+        <span class="cart-item-value" id="gobiSummary">0</span>
+      </div>
+      <div class="cart-item-line">
+        <span class="cart-item-name">Capscicum</span>
+        <span class="cart-item-value" id="CapscicumSummary">0</span>
+      </div>
+      <div class="cart-item-line cart-total-row">
+        <span class="cart-item-name">Total</span>
+        <span class="cart-item-value" id="cartTotal">0</span>
+      </div>
+    </div>
+
+    <script>
+      const alooPrice = 20;
+      const onionPrice = 15;
+      const gobiPrice = 30;
+      const CapscicumPrice = 40;
+      let alooCount = 0;
+      let onionCount = 0;
+      let gobiCount = 0;
+      let CapscicumCount = 0;
+      const alooDisplay = document.getElementById("cng");
+      const onionDisplay = document.getElementById("onionQty");
+      const gobiDispaly = document.getElementById("gobiQty");
+      const CapscicumDispaly = document.getElementById("CapscicumQty");
+      const alooSummary = document.getElementById("alooSummary");
+      const onionSummary = document.getElementById("onionSummary");
+      const gobiSummary = document.getElementById("gobiSummary");
+      const CapscicumSummary = document.getElementById("CapscicumSummary");
+      const totalsummary = document.getElementById("cartTotal");
+
+      let products = [
+        {
+          name: "Aloo",
+          price: 20,
+          quantity: 0,
+        },
+        {
+          name: "Onion",
+          price: 15,
+          quantity: 0,
+        },
+        {
+          name: "Gobi",
+          price: 30,
+          quantity: 0,
+        },
+        {
+          name: "Capscicum",
+          price: 40,
+          quantity: 0,
+        },
+      ];
+
+      function updateSummary() {
+        const grandTotal =
+          alooCount * alooPrice +
+          onionCount * onionPrice +
+          gobiCount * gobiPrice +
+          CapscicumCount * CapscicumPrice;
+        alooSummary.textContent = alooCount;
+        onionSummary.textContent = onionCount;
+        gobiSummary.textContent = gobiCount;
+        CapscicumSummary.textContent = CapscicumCount;
+        totalsummary.textContent = `₹${grandTotal}`;
+      }
+
+      function plus() {
+        alooCount++;
+        alooDisplay.textContent = alooCount;
+        updateSummary();
+      }
+
+      function minus() {
+        if (alooCount > 0) {
+          alooCount--;
+          alooDisplay.textContent = alooCount;
+          updateSummary();
+        }
+      }
+
+      function plusOnion() {
+        onionCount++;
+        onionDisplay.textContent = onionCount;
+        updateSummary();
+      }
+
+      function minusOnion() {
+        if (onionCount > 0) {
+          onionCount--;
+          onionDisplay.textContent = onionCount;
+          updateSummary();
+        }
+      }
+      function plusGobi() {
+        gobiCount++;
+        gobiDispaly.textContent = gobiCount;
+        updateSummary();
+      }
+      function minusGobi() {
+        if (gobiCount > 0) {
+          gobiCount--;
+          gobiDispaly.textContent = gobiCount;
+          updateSummary();
+        }
+      }
+      function plusCapscicum() {
+        CapscicumCount++;
+        CapscicumDispaly.textContent = CapscicumCount;
+        updateSummary();
+      }
+      function minusCapscicum() {
+        if (CapscicumCount > 0) {
+          CapscicumCount--;
+          CapscicumDispaly.textContent = CapscicumCount;
+          updateSummary();
+        }
+      }
+    </script>
+  </body>
+</html>

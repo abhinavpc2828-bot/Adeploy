@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Submission</title>
+    <link rel="stylesheet" type="text/css" href="style1.css" />
+  </head>
+  <body>
+    <label for="username">Username: </label>
+    <input type="text" id="username" /><br /><br />
+    <label for="password">Password: </label>
+    <input
+      type="password"
+      id="password"
+      placeholder="A Strong Password Required "
+    /><br />
+    <label for="ads">Adress: </label>
+    <input type="text" id="ads" placeholder="Your Local Adress" /><br />
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="xyz@gmail.com" /><br />
+    <label for="telephone">Telephone:</label>
+    <input type="tel" id="telephone" placeholder="#91-" /><br />
+    <label for="bday">BirthDay:</label>
+    <input type="date" id="bday" /><br />
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" min="0" max="100" /><br />
+
+    <label for="title">Title:</label>
+    <label for="Mr">Mr</label>
+    <input type="radio" id="Mr" value="Mr" name="title" />
+    <label for="Mrs">Mrs</label>
+    <input type="radio" id="Mrs" value="Mrs" name="title" />
+    <label for="Dr">Dr</label>
+    <input type="radio" id="Dr" value="Dr" name="title" /><br />
+    <label for="Payment">Payment</label>
+    <select id="Payment">
+      <option value="UPI">UPI</option>
+      <option value="SBI">SBI</option>
+      <option value="HDFC">HDFC</option></select
+    ><br />
+
+    <label for="Comments">Comments</label>
+    <textarea id="Comments" rows="2" cols="25"></textarea><br />
+    <label for="File">File</label>
+    <input type="file" id="File" accept="image/png, image/jpg" /><br />
+    <input type="submit" id="submit" onclick="submitform()" />
+    <input type="reset" id="reset" /><br />
+    <script>
+      function submitform() {
+        const username = document.getElementById("username").value;
+
+        localStorage.setItem("submitname", username);
+        window.location.href = "formresult.html";
+
+        const ads = document.getElementById("ads").value;
+        localStorage.setItem("urads", ads);
+
+        const email = document.getElementById("email").value;
+        localStorage.setItem("subemail", email);
+
+        const telephone = document.getElementById("telephone").value;
+        localStorage.setItem("subtel", telephone);
+
+        const bday = document.getElementById("bday").value;
+        localStorage.setItem("subbday", bday);
+
+        const qunty = document.getElementById("quantity").value;
+        localStorage.setItem("subqunty", qunty);
+
+        let title = document.querySelector('input[name="title"]:checked');
+        if (title) {
+          localStorage.setItem("subtitle", title.value);
+        }
+
+        let pymt = document.getElementById("Payment").value;
+        localStorage.setItem("subpymt", pymt);
+
+        let cmt = document.getElementById("Comments").value;
+        localStorage.setItem("subcmt", cmt);
+      }
+    </script>
+  </body>
+</html>
