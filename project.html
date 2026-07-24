@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+  <body>
+    <h3>Type something:</h3>
+
+    <input id="userInput" type="text" />
+    <button onclick="showOutput()">Submit</button>
+
+    <p><strong>Output:</strong></p>
+    <p id="result"></p>
+    <br /><br />
+    <h2>Saved Array</h2>
+    <br />
+    <p id="display"></p>
+    <script>
+      function showOutput() {
+        let text = document
+          .getElementById("userInput")
+          .value.trim()
+          .toLowerCase();
+        let output = "";
+
+        // -------------------------------
+        // 1) RANDOM REPLIES FOR GREETINGS
+        // -------------------------------
+        const greetings = ["hi", "hello", "hey", "yo"];
+        const greetReplies = [
+          "Hello! 😊",
+          "Hey there! 👋",
+          "Hi! How can I help you?",
+          "Yo! What's up?",
+          "Nice to see you! 😄",
+        ];
+
+        for (let g of greetings) {
+          if (text.includes(g)) {
+            output =
+              greetReplies[Math.floor(Math.random() * greetReplies.length)];
+            document.getElementById("result").innerText = output;
+            return;
+          }
+        }
+
+        // -------------------------------
+        // 2) WEATHER RESPONSE
+        // -------------------------------
+        if (text.includes("weather")) {
+          output = "The weather looks great today! ☀️";
+          document.getElementById("result").innerText = output;
+          return;
+        }
+
+        // -------------------------------
+        // 3) NAME DETECTION
+        // -------------------------------
+        if (text.includes("my name is")) {
+          let name = text.replace("my name is", "").trim();
+          if (name.length > 0) {
+            output =
+              "Nice to meet you, " +
+              name.charAt(0).toUpperCase() +
+              name.slice(1) +
+              "!";
+            document.getElementById("result").innerText = output;
+            return;
+          }
+        }
+
+        // -------------------------------
+        // 4) EMOTION DETECTION
+        // -------------------------------
+        if (text.includes("sad")) {
+          output = "I'm sorry you're feeling sad. I’m here for you ❤️";
+          document.getElementById("result").innerText = output;
+          return;
+        }
+
+        if (text.includes("happy")) {
+          output = "That's awesome! Stay happy 😄";
+          document.getElementById("result").innerText = output;
+          return;
+        }
+
+        if (text.includes("angry")) {
+          output = "Take a deep breath… it will be okay ❤️‍🩹";
+          document.getElementById("result").innerText = output;
+          return;
+        }
+
+        // -------------------------------
+        // 5) TIME AND DATE
+        // -------------------------------
+        if (text.includes("time")) {
+          output = "Current time: " + new Date().toLocaleTimeString();
+          document.getElementById("result").innerText = output;
+          return;
+        }
+
+        if (text.includes("date")) {
+          output = "Today's date: " + new Date().toLocaleDateString();
+          document.getElementById("result").innerText = output;
+          return;
+        }
+
+        // -------------------------------
+        // 6) AUTO MATH SOLVER
+        // -------------------------------
+        try {
+          let result = eval(text);
+          if (!isNaN(result)) {
+            output = "Math result: " + result;
+            document.getElementById("result").innerText = output;
+            return;
+          }
+        } catch {}
+
+        if (text.includes("google")) {
+          window.open("https://www.google.com", "_blank");
+        }
+
+        if (text.includes("youtube")) {
+          window.open("https://www.youtube.com", "_blank");
+        }
+        // -------------------------------
+        // 7) DEFAULT RESPONSE
+        // -------------------------------
+        output = "I didn’t understand that, but I'm learning! 😊";
+        document.getElementById("result").innerText = output;
+      }
+    </script>
+  </body>
+</html>
