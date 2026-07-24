@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="styleoder.css" />
+  </head>
+  <body>
+    <div class="menu-page">
+      <header class="menu-header">
+        <h1>Restaurant Menu</h1>
+        <p>Fresh flavors, made to order</p>
+      </header>
+
+      <section class="menu-section">
+        <h2>Pizza</h2>
+        <div class="menu-grid">
+          <article
+            class="menu-card"
+            id="farm-house-card"
+            data-name="Farm House"
+            data-price="12"
+          >
+            <div class="menu-icon">🍕</div>
+            <div class="menu-info">
+              <div class="menu-top">
+                <h3>Farm House</h3>
+                <span class="price" id="farm-house-price">120</span>
+              </div>
+              <p>Loaded with fresh veggies and melted cheese.</p>
+              <div class="quantity-control">
+                <button
+                  class="qty-btn minus"
+                  id="farm-house-minus"
+                  type="button"
+                  onclick="minus11()"
+                >
+                  -
+                </button>
+                <span class="qty-value" id="farm-house-qty">0</span>
+                <button
+                  class="qty-btn plus"
+                  id="farm-house-plus"
+                  type="button"
+                  onclick="add11()"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="menu-card"
+            id="margherita-card"
+            data-name="Margherita"
+            data-price="10"
+          >
+            <div class="menu-icon">🍕</div>
+            <div class="menu-info">
+              <div class="menu-top">
+                <h3>Margherita</h3>
+                <span class="price" id="margherita-price">100</span>
+              </div>
+              <p>Classic tomato, basil, and mozzarella delight.</p>
+              <div class="quantity-control">
+                <button
+                  class="qty-btn minus"
+                  id="margherita-minus"
+                  type="button"
+                  onclick="minus12()"
+                >
+                  -
+                </button>
+                <span class="qty-value" id="margherita-qty">0</span>
+                <button
+                  class="qty-btn plus"
+                  id="margherita-plus"
+                  type="button"
+                  onclick="add12()"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="menu-section">
+        <h2>Burgers</h2>
+        <div class="menu-grid">
+          <article
+            class="menu-card"
+            id="veg-burger-card"
+            data-name="Veg Burger"
+            data-price="8"
+          >
+            <div class="menu-icon">🍔</div>
+            <div class="menu-info">
+              <div class="menu-top">
+                <h3>Veg Burger</h3>
+                <span class="price" id="veg-burger-price">150</span>
+              </div>
+              <p>Crunchy patty with lettuce, tomato, and sauce.</p>
+              <div class="quantity-control">
+                <button
+                  class="qty-btn minus"
+                  id="veg-burger-minus"
+                  type="button"
+                  onclick="minus21()"
+                >
+                  -
+                </button>
+                <span class="qty-value" id="veg-burger-qty">0</span>
+                <button
+                  class="qty-btn plus"
+                  id="veg-burger-plus"
+                  type="button"
+                  onclick="add21()"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="menu-card"
+            id="paneer-burger-card"
+            data-name="Paneer Burger"
+            data-price="9"
+          >
+            <div class="menu-icon">🍔</div>
+            <div class="menu-info">
+              <div class="menu-top">
+                <h3>Paneer Burger</h3>
+                <span class="price" id="paneer-burger-price">110</span>
+              </div>
+              <p>Soft paneer with spicy mayo and crunchy lettuce.</p>
+              <div class="quantity-control">
+                <button
+                  class="qty-btn minus"
+                  id="paneer-burger-minus"
+                  type="button"
+                  onclick="minus22()"
+                >
+                  -
+                </button>
+                <span class="qty-value" id="paneer-burger-qty">0</span>
+                <button
+                  class="qty-btn plus"
+                  id="paneer-burger-plus"
+                  type="button"
+                  onclick="add22()"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <div class="cart-footer" id="cart-footer">
+      <div class="cart-summary" id="cart-summary">
+        <div>
+          <h2 id="cart-title">Order Cart</h2>
+          <p class="cart-status" id="cart-status">
+            Select items to add them to your cart.
+          </p>
+        </div>
+        <div class="cart-actions">
+          <button
+            class="cart-btn"
+            id="clear-cart-btn"
+            onclick="clear()"
+            type="button"
+          >
+            Clear
+          </button>
+          <button
+            class="cart-btn primary"
+            id="checkout-btn"
+            type="button"
+            onclick="checkout()"
+          >
+            Checkout
+          </button>
+        </div>
+      </div>
+      <div class="cart-details" id="cart-details">
+        <ul class="cart-list" id="cart-items">
+          <li class="empty-cart" id="empty-cart">Your cart is empty.</li>
+          <li class="cart-row">
+            <p class="cart-item-name" id="pizza-farmhouse-disp"></p>
+            <span class="cart-item-total" id="pizza-farmhouse-total"></span>
+          </li>
+          <li class="cart-row">
+            <p class="cart-item-name" id="pizza-margherita-disp"></p>
+            <span class="cart-item-total" id="pizza-margherita-total"></span>
+          </li>
+          <li class="cart-row">
+            <p class="cart-item-name" id="burger-veg-disp"></p>
+            <span class="cart-item-total" id="burger-veg-total"></span>
+          </li>
+          <li class="cart-row">
+            <p class="cart-item-name" id="burger-paneer-disp"></p>
+            <span class="cart-item-total" id="burger-paneer-total"></span>
+          </li>
+        </ul>
+        <div class="cart-total" id="cart-total">
+          <span class="cart-total" id="grand-cart-total"></span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const menu = {
+        pizza: [
+          {
+            id: 1,
+            name: "Farm House",
+            price: 120,
+            quantity: 0,
+          },
+          {
+            id: 2,
+            name: "Margherita",
+            price: 100,
+            quantity: 0,
+          },
+        ],
+        burger: [
+          {
+            id: 1,
+            name: "Veg Burger",
+            price: 150,
+            quantity: 0,
+          },
+          {
+            id: 2,
+            name: "Paneer Burger",
+            price: 110,
+            quantity: 0,
+          },
+        ],
+      };
+      function add11() {
+        menu.pizza[0].quantity++;
+        document.getElementById("farm-house-qty").textContent =
+          menu.pizza[0].quantity;
+        updatecart();
+        total();
+      }
+
+      function minus11() {
+        if (menu.pizza[0].quantity > 0) {
+          menu.pizza[0].quantity--;
+          document.getElementById("farm-house-qty").textContent =
+            menu.pizza[0].quantity;
+          updatecart();
+          total();
+        }
+      }
+
+      function add12() {
+        menu.pizza[1].quantity++;
+        document.getElementById("margherita-qty").textContent =
+          menu.pizza[1].quantity;
+        updatecart();
+        total();
+      }
+
+      function minus12() {
+        if (menu.pizza[1].quantity > 0) {
+          menu.pizza[1].quantity--;
+          document.getElementById("margherita-qty").textContent =
+            menu.pizza[1].quantity;
+          updatecart();
+          total();
+        }
+      }
+
+      function add21() {
+        menu.burger[0].quantity++;
+        document.getElementById("veg-burger-qty").textContent =
+          menu.burger[0].quantity;
+        updatecart();
+        total();
+      }
+
+      function minus21() {
+        if (menu.burger[0].quantity > 0) {
+          menu.burger[0].quantity--;
+          document.getElementById("veg-burger-qty").textContent =
+            menu.burger[0].quantity;
+          updatecart();
+          total();
+        }
+      }
+
+      function add22() {
+        menu.burger[1].quantity++;
+        document.getElementById("paneer-burger-qty").textContent =
+          menu.burger[1].quantity;
+        updatecart();
+        total();
+      }
+
+      function minus22() {
+        if (menu.burger[1].quantity > 0) {
+          menu.burger[1].quantity--;
+          document.getElementById("paneer-burger-qty").textContent =
+            menu.burger[1].quantity;
+          updatecart();
+          total();
+        }
+      }
+      /// updated the cart section and if qty=0 removes the items from cart section;;;
+      function updatecart() {
+        if (menu.pizza[0].quantity > 0) {
+          document.getElementById("pizza-farmhouse-disp").textContent =
+            `Farm House x${menu.pizza[0].quantity}`;
+          let pizza0total = menu.pizza[0].price * menu.pizza[0].quantity;
+          document.getElementById("pizza-farmhouse-total").textContent =
+            pizza0total;
+        } else {
+          document.getElementById("pizza-farmhouse-disp").textContent = "";
+          document.getElementById("pizza-farmhouse-total").textContent = " ";
+        }
+
+        if (menu.pizza[1].quantity > 0) {
+          document.getElementById("pizza-margherita-disp").textContent =
+            `Margherita x${menu.pizza[1].quantity}`;
+          let pizza1total = menu.pizza[1].price * menu.pizza[1].quantity;
+          document.getElementById("pizza-margherita-total").textContent =
+            pizza1total;
+        } else {
+          document.getElementById("pizza-margherita-disp").textContent = "";
+          document.getElementById("pizza-margherita-total").textContent = " ";
+        }
+
+        if (menu.burger[0].quantity > 0) {
+          document.getElementById("burger-veg-disp").textContent =
+            `Veg Burger x${menu.burger[0].quantity}`;
+          const burger0total = menu.burger[0].price * menu.burger[0].quantity;
+          document.getElementById("burger-veg-total").textContent =
+            burger0total;
+        } else {
+          document.getElementById("burger-veg-disp").textContent = "";
+          document.getElementById("burger-veg-total").textContent = "";
+        }
+        if (menu.burger[1].quantity > 0) {
+          document.getElementById("burger-paneer-disp").textContent =
+            `Paneer Burger x${menu.burger[1].quantity}`;
+          const burger1total = menu.burger[1].price * menu.burger[1].quantity;
+          document.getElementById("burger-paneer-total").textContent =
+            burger1total;
+        } else {
+          document.getElementById("burger-paneer-disp").textContent = "";
+          document.getElementById("burger-paneer-total").textContent = "";
+        }
+
+        ///clears cart after all qty are zero
+        if (
+          menu.pizza[0].quantity > 0 ||
+          menu.pizza[1].quantity > 0 ||
+          menu.burger[0].quantity > 0 ||
+          menu.burger[1].quantity > 0
+        ) {
+          document.getElementById("empty-cart").textContent = "Your Cart:";
+        } else {
+          document.getElementById("empty-cart").textContent =
+            "Your Cart is Empty";
+        }
+      }
+
+      function total() {
+        const grandTotal =
+          menu.pizza[0].price * menu.pizza[0].quantity +
+          menu.pizza[1].price * menu.pizza[1].quantity +
+          menu.burger[0].price * menu.burger[0].quantity +
+          menu.burger[1].price * menu.burger[1].quantity;
+
+        if (
+          menu.pizza[0].quantity > 0 ||
+          menu.pizza[1].quantity > 0 ||
+          menu.burger[0].quantity > 0 ||
+          menu.burger[1].quantity > 0
+        ) {
+          document.getElementById("grand-cart-total").textContent =
+            ` Total: ${grandTotal}`;
+        } else {
+          document.getElementById("grand-cart-total").textContent = "";
+        }
+      }
+
+      function clear() {
+        alert("Clear Cart  feature will be available soon!!");
+      }
+      function checkout() {
+        alert("Checkout feature will be available soon!!");
+      }
+    </script>
+  </body>
+</html>
