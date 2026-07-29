@@ -1,206 +1,214 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FORM RESULT </title>
-    <link href="form.html">
-  <link rel="stylesheet" type="text/css" href="style2.css">
-    </style>
-</head>
-<body>
-     <p id="greeting">Loading...</p>
-     <p id="subads"></p>
-     <p id="subemail"></p>
-     <p id="subtel"></p>
-     <p id="subbday"></p>
-     <p id="subqunty"></p>
-     <p id="subtitle"></p>
-     <p id="subpymt"></p>
-     <p id="subcmt"></p>
-     <p id="sub"></p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FORM RESULT</title>
+    <link rel="stylesheet" type="text/css" href="style2.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="result-card">
+        <h1>Submission Summary</h1>
+        <p class="result-intro">
+          Here is the information captured from the form.
+        </p>
 
-     <button onclick="saveRecord()">Save</button>
-     <button onclick="sendEmail()">Send Email</button>
- 
-     <!-- <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script> -->
+        <div class="details-list">
+          <p id="greeting" class="detail-item">Loading...</p>
+          <p id="subads" class="detail-item"></p>
+          <p id="subemail" class="detail-item"></p>
+          <p id="subtel" class="detail-item"></p>
+          <p id="subbday" class="detail-item"></p>
+          <p id="subqunty" class="detail-item"></p>
+          <p id="subtitle" class="detail-item"></p>
+          <p id="subpymt" class="detail-item"></p>
+          <p id="subcmt" class="detail-item"></p>
+        </div>
 
-<script>
-  function sendEmail() {
-    let record = {
-      name: localStorage.getItem("submitname"),
-      address: localStorage.getItem("urads"),
-      email: localStorage.getItem("subemail"),
-      telephone: localStorage.getItem("subtel"),
-      birthday: localStorage.getItem("subbday"),
-      quantity: localStorage.getItem("subqunty"),
-      profession: localStorage.getItem("subtitle"),
-      payment: localStorage.getItem("subpymt"),
-      comment: localStorage.getItem("subcmt"),
-    };
+        <div class="button-row">
+          <button class="btn btn-primary" onclick="saveRecord()">Save</button>
+          <button class="btn btn-secondary" onclick="sendEmail()">
+            Send Email
+          </button>
+        </div>
+      </div>
+    </div>
 
-    if (typeof emailjs === "undefined") {
-      alert("Email service is unavailable right now.");
-      return;
-    }
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script> -->
 
-    alert("Sending email to: " + record.email);
+    <script>
+      function sendEmail() {
+        let record = {
+          name: localStorage.getItem("submitname"),
+          address: localStorage.getItem("urads"),
+          email: localStorage.getItem("subemail"),
+          telephone: localStorage.getItem("subtel"),
+          birthday: localStorage.getItem("subbday"),
+          quantity: localStorage.getItem("subqunty"),
+          profession: localStorage.getItem("subtitle"),
+          payment: localStorage.getItem("subpymt"),
+          comment: localStorage.getItem("subcmt"),
+        };
 
-    emailjs
-      .send("service_id", "templated _id ", {
-        user_name: record.name,
-        address: record.address,
-        to_email: record.email,
-        telephone: record.telephone,
-        birthday: record.birthday,
-        quantity: record.quantity,
-        profession: record.profession,
-        payment: record.payment,
-        comment: record.comment,
-      })
-      .then(function (response) {
-        console.log(response);
-        alert("EMAIL SENT SUCCESSFULLY");
-      })
-      .catch(function (error) {
-        console.log(error);
-        alert("EMAIL FAILED");
-      });
-  }
+        if (typeof emailjs === "undefined") {
+          alert("Email service is unavailable right now.");
+          return;
+        }
 
-  const name = localStorage.getItem("submitname");
-  const greeting = document.getElementById("greeting");
+        alert("Sending email to: " + record.email);
 
-  if (name) {
-    greeting.textContent = `Hello, ${name}!`;
-  } else {
-    greeting.textContent = "No name submitted.";
-  }
+        emailjs
+          .send("service_id", "templated _id ", {
+            user_name: record.name,
+            address: record.address,
+            to_email: record.email,
+            telephone: record.telephone,
+            birthday: record.birthday,
+            quantity: record.quantity,
+            profession: record.profession,
+            payment: record.payment,
+            comment: record.comment,
+          })
+          .then(function (response) {
+            console.log(response);
+            alert("EMAIL SENT SUCCESSFULLY");
+          })
+          .catch(function (error) {
+            console.log(error);
+            alert("EMAIL FAILED");
+          });
+      }
 
-  const Adress = localStorage.getItem("urads");
-  const subads = document.getElementById("subads");
-  if (Adress) {
-    subads.textContent = `Your Adress is: ${Adress}`;
-  } else {
-    subads.textContent = "No Adress submitted.";
-  }
+      const name = localStorage.getItem("submitname");
+      const greeting = document.getElementById("greeting");
 
-  const email = localStorage.getItem("subemail");
-  const subemail = document.getElementById("subemail");
-  if (email) {
-    subemail.textContent = `Your email is: ${email}`;
-  } else {
-    subemail.textContent = "No email is submitted";
-  }
+      if (name) {
+        greeting.textContent = `Hello, ${name}!`;
+      } else {
+        greeting.textContent = "No name submitted.";
+      }
 
-  const telephone = localStorage.getItem("subtel");
-  const subtel = document.getElementById("subtel");
-  if (telephone) {
-    subtel.textContent = `Your Telephone number is ${telephone}`;
-  } else {
-    subtel.textContent = "No Telephone submitted";
-  }
+      const Adress = localStorage.getItem("urads");
+      const subads = document.getElementById("subads");
+      if (Adress) {
+        subads.textContent = `Your Address is: ${Adress}`;
+      } else {
+        subads.textContent = "No Address submitted.";
+      }
 
-  const Bday = localStorage.getItem("subbday");
-  const subbday = document.getElementById("subbday");
-  if (Bday) {
-    let parts = Bday.split("-");
-    let formattedDate = parts[2] + "-" + parts[1] + "-" + parts[0];
-    subbday.textContent = "Your Birthday is " + formattedDate;
-  } else {
-    subbday.textContent = "No Birthday submitted";
-  }
+      const email = localStorage.getItem("subemail");
+      const subemail = document.getElementById("subemail");
+      if (email) {
+        subemail.textContent = `Your email is: ${email}`;
+      } else {
+        subemail.textContent = "No email submitted";
+      }
 
-  const qunty = localStorage.getItem("subqunty");
-  const subqunty = document.getElementById("subqunty");
-  if (qunty) {
-    subqunty.textContent = `Quantity : ${qunty}`;
-  } else {
-    subqunty.textContent = "No Quantity submitted";
-  }
+      const telephone = localStorage.getItem("subtel");
+      const subtel = document.getElementById("subtel");
+      if (telephone) {
+        subtel.textContent = `Your Telephone number is ${telephone}`;
+      } else {
+        subtel.textContent = "No Telephone submitted";
+      }
 
-  const title = localStorage.getItem("subtitle");
-  const subtitle = document.getElementById("subtitle");
-  if (title) {
-    subtitle.textContent = `Your Profession : ${title}.${name}`;
-  } else {
-    subtitle.textContent = "No Profession submitted";
-  }
+      const Bday = localStorage.getItem("subbday");
+      const subbday = document.getElementById("subbday");
+      if (Bday) {
+        let parts = Bday.split("-");
+        let formattedDate = parts[2] + "-" + parts[1] + "-" + parts[0];
+        subbday.textContent = "Your Birthday is " + formattedDate;
+      } else {
+        subbday.textContent = "No Birthday submitted";
+      }
 
-  const pymt = localStorage.getItem("subpymt");
-  const subpymt = document.getElementById("subpymt");
-  if (pymt) {
-    subpymt.textContent = `Your Payment Mode : ${pymt}`;
-  } else {
-    subpymt.textContent = "No Payment Mode submitted";
-  }
+      const qunty = localStorage.getItem("subqunty");
+      const subqunty = document.getElementById("subqunty");
+      if (qunty) {
+        subqunty.textContent = `Quantity : ${qunty}`;
+      } else {
+        subqunty.textContent = "No Quantity submitted";
+      }
 
-  const cmt = localStorage.getItem("subcmt");
-  const subcmt = document.getElementById("subcmt");
-  if (cmt) {
-    subcmt.textContent = `Your Comment : ${cmt}`;
-  } else {
-    subcmt.textContent = "No Comment submitted";
-  }
+      const title = localStorage.getItem("subtitle");
+      const subtitle = document.getElementById("subtitle");
+      if (title) {
+        subtitle.textContent = `Your Profession : ${title}.${name}`;
+      } else {
+        subtitle.textContent = "No Profession submitted";
+      }
 
-  function saveRecord() {
-    let record = {
-      name: localStorage.getItem("submitname"),
-      address: localStorage.getItem("urads"),
-      email: localStorage.getItem("subemail"),
-      telephone: localStorage.getItem("subtel"),
-      birthday: localStorage.getItem("subbday"),
-      quantity: localStorage.getItem("subqunty"),
-      profession: localStorage.getItem("subtitle"),
-      payment: localStorage.getItem("subpymt"),
-      comment: localStorage.getItem("subcmt"),
-    };
+      const pymt = localStorage.getItem("subpymt");
+      const subpymt = document.getElementById("subpymt");
+      if (pymt) {
+        subpymt.textContent = `Your Payment Mode : ${pymt}`;
+      } else {
+        subpymt.textContent = "No Payment Mode submitted";
+      }
 
-    let records = JSON.parse(localStorage.getItem("allRecords")) || [];
+      const cmt = localStorage.getItem("subcmt");
+      const subcmt = document.getElementById("subcmt");
+      if (cmt) {
+        subcmt.textContent = `Your Comment : ${cmt}`;
+      } else {
+        subcmt.textContent = "No Comment submitted";
+      }
 
-    let exists = records.some(
-      (r) =>
-        r.name === record.name &&
-        r.email === record.email &&
-        r.telephone === record.telephone
-    );
+      function saveRecord() {
+        let record = {
+          name: localStorage.getItem("submitname"),
+          address: localStorage.getItem("urads"),
+          email: localStorage.getItem("subemail"),
+          telephone: localStorage.getItem("subtel"),
+          birthday: localStorage.getItem("subbday"),
+          quantity: localStorage.getItem("subqunty"),
+          profession: localStorage.getItem("subtitle"),
+          payment: localStorage.getItem("subpymt"),
+          comment: localStorage.getItem("subcmt"),
+        };
 
-    if (exists) {
-      alert("This record already exists!");
-      return;
-    }
+        let records = JSON.parse(localStorage.getItem("allRecords")) || [];
 
-    records.push(record);
-    localStorage.setItem("allRecords", JSON.stringify(records));
+        let exists = records.some(
+          (r) =>
+            r.name === record.name &&
+            r.email === record.email &&
+            r.telephone === record.telephone,
+        );
 
-    greeting.textContent = "";
-    subads.textContent = "";
-    subemail.textContent = "";
-    subtel.textContent = "";
-    subbday.textContent = "";
-    subqunty.textContent = "";
-    subtitle.textContent = "";
-    subpymt.textContent = "";
-    subcmt.textContent = "";
+        if (exists) {
+          alert("This record already exists!");
+          return;
+        }
 
-    localStorage.removeItem("submitname");
-    localStorage.removeItem("urads");
-    localStorage.removeItem("subemail");
-    localStorage.removeItem("subtel");
-    localStorage.removeItem("subbday");
-    localStorage.removeItem("subqunty");
-    localStorage.removeItem("subtitle");
-    localStorage.removeItem("subpymt");
-    localStorage.removeItem("subcmt");
+        records.push(record);
+        localStorage.setItem("allRecords", JSON.stringify(records));
 
-    sessionStorage.setItem("resetForm", "true");
-    alert("Data Saved Successfully!");
-    window.location.href = "form.html";
-  }
-</script>
+        greeting.textContent = "";
+        subads.textContent = "";
+        subemail.textContent = "";
+        subtel.textContent = "";
+        subbday.textContent = "";
+        subqunty.textContent = "";
+        subtitle.textContent = "";
+        subpymt.textContent = "";
+        subcmt.textContent = "";
 
+        localStorage.removeItem("submitname");
+        localStorage.removeItem("urads");
+        localStorage.removeItem("subemail");
+        localStorage.removeItem("subtel");
+        localStorage.removeItem("subbday");
+        localStorage.removeItem("subqunty");
+        localStorage.removeItem("subtitle");
+        localStorage.removeItem("subpymt");
+        localStorage.removeItem("subcmt");
 
-
-</body>
+        sessionStorage.setItem("resetForm", "true");
+        alert("Data Saved Successfully!");
+        window.location.href = "form.html";
+      }
+    </script>
+  </body>
 </html>

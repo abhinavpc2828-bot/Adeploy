@@ -7,45 +7,104 @@
     <link rel="stylesheet" type="text/css" href="style1.css" />
   </head>
   <body>
-    <label for="username">Username: </label>
-    <input type="text" id="username" /><br /><br />
-    <label for="password">Password: </label>
-    <input
-      type="password"
-      id="password"
-      placeholder="A Strong Password Required "
-    /><br />
-    <label for="ads">Adress: </label>
-    <input type="text" id="ads" placeholder="Your Local Adress" /><br />
-    <label for="email">Email:</label>
-    <input type="email" id="email" placeholder="xyz@gmail.com" /><br />
-    <label for="telephone">Telephone:</label>
-    <input type="tel" id="telephone" placeholder="#91-" /><br />
-    <label for="bday">BirthDay:</label>
-    <input type="date" id="bday" /><br />
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" min="0" max="100" /><br />
+    <div class="page-shell">
+      <div class="form-card">
+        <h1>Form</h1>
+        <p class="form-intro">Fill in your details and launch the next step.</p>
 
-    <label for="title">Title:</label>
-    <label for="Mr">Mr</label>
-    <input type="radio" id="Mr" value="Mr" name="title" />
-    <label for="Mrs">Mrs</label>
-    <input type="radio" id="Mrs" value="Mrs" name="title" />
-    <label for="Dr">Dr</label>
-    <input type="radio" id="Dr" value="Dr" name="title" /><br />
-    <label for="Payment">Payment</label>
-    <select id="Payment">
-      <option value="UPI">UPI</option>
-      <option value="SBI">SBI</option>
-      <option value="HDFC">HDFC</option></select
-    ><br />
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter your username" />
+        </div>
 
-    <label for="Comments">Comments</label>
-    <textarea id="Comments" rows="2" cols="25"></textarea><br />
-    <label for="File">File</label>
-    <input type="file" id="File" accept="image/png, image/jpg" /><br />
-    <input type="submit" id="submit" onclick="submitform()" />
-    <input type="reset" id="reset" /><br />
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="A Strong Password Required"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="ads">Address</label>
+          <input type="text" id="ads" placeholder="Your Local Address" />
+        </div>
+
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="xyz@gmail.com" />
+        </div>
+
+        <div class="input-group">
+          <label for="telephone">Telephone</label>
+          <input type="tel" id="telephone" placeholder="#91-" />
+        </div>
+
+        <div class="input-group">
+          <label for="bday">Birthday</label>
+          <input type="date" id="bday" />
+        </div>
+
+        <div class="input-group">
+          <label for="quantity">Quantity</label>
+          <input type="number" id="quantity" min="0" max="100" />
+        </div>
+
+        <div class="input-group">
+          <label>Title</label>
+          <div class="radio-group">
+            <label class="choice-pill" for="Mr">
+              <input type="radio" id="Mr" value="Mr" name="title" />
+              Mr
+            </label>
+            <label class="choice-pill" for="Mrs">
+              <input type="radio" id="Mrs" value="Mrs" name="title" />
+              Mrs
+            </label>
+            <label class="choice-pill" for="Dr">
+              <input type="radio" id="Dr" value="Dr" name="title" />
+              Dr
+            </label>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="Payment">Payment</label>
+          <select id="Payment">
+            <option value="UPI">UPI</option>
+            <option value="SBI">SBI</option>
+            <option value="HDFC">HDFC</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="Comments">Comments</label>
+          <textarea
+            id="Comments"
+            rows="3"
+            placeholder="Tell us more..."
+          ></textarea>
+        </div>
+
+        <div class="input-group">
+          <label for="File">File</label>
+          <input type="file" id="File" accept="image/png, image/jpg" />
+        </div>
+
+        <div class="button-row">
+          <input
+            class="btn btn-submit"
+            type="submit"
+            id="submit"
+            onclick="submitform()"
+            value="Submit"
+          />
+          <input class="btn btn-reset" type="reset" id="reset" value="Reset" />
+        </div>
+      </div>
+    </div>
+
     <script>
       function submitform() {
         const username = document.getElementById("username").value;
