@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saved Records</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: lightgray;
+      }
+
+      button {
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Saved Records</h2>
+
+    <button onclick="clearTable()">Clear All Records</button>
+
+    <table id="recordTable">
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Telephone</th>
+        <th>Birthday</th>
+        <th>Quantity</th>
+        <th>Profession</th>
+        <th>Payment</th>
+        <th>Comment</th>
+        <th>Action</th>
+      </tr>
+    </table>
+
+    <script>
+      let records = JSON.parse(localStorage.getItem("allRecords")) || [];
+
+      let table = document.getElementById("recordTable");
+
+      records.forEach(function (record, index) {
+        let row = table.insertRow();
+
+        row.insertCell(0).textContent = record.name || "";
+        row.insertCell(1).textContent = record.address || "";
+        row.insertCell(2).textContent = record.email || "";
+        row.insertCell(3).textContent = record.telephone || "";
+        row.insertCell(4).textContent = record.birthday || "";
+        row.insertCell(5).textContent = record.quantity || "";
+        row.insertCell(6).textContent = record.profession || "";
+        row.insertCell(7).textContent = record.payment || "";
+        row.insertCell(8).textContent = record.comment || "";
+
+        let actionCell = row.insertCell(9);
+
+        actionCell.innerHTML = `<button onclick="deleteRow(${index})">
+            Delete
+        </button>`;
+      });
+
+      function deleteRow(index) {
+        let records = JSON.parse(localStorage.getItem("allRecords")) || [];
+
+        records.splice(index, 1);
+
+        localStorage.setItem("allRecords", JSON.stringify(records));
+
+        location.reload();
+      }
+
+      function clearTable() {
+        if (confirm("Delete all records?")) {
+          localStorage.removeItem("allRecords");
+
+          location.reload();
+        }
+      }
+    </script>
+  </body>
+</html>
