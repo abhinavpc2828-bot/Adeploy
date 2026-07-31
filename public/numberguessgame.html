@@ -1,0 +1,468 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Number Guessing Game</title>
+
+    <!-- CSS FILE -->
+    <link rel="stylesheet" href="numberguessgamestyle.css" />
+  </head>
+
+  <body>
+    <!-- =========================================
+     MAIN GAME CONTAINER
+========================================== -->
+
+    <main class="game-container">
+      <!-- =========================================
+       GAME HEADER
+  ========================================== -->
+
+      <header class="game-header">
+        <h1>Number Guessing Game</h1>
+
+        <!-- Future feature:
+         Add a short game description here
+         Example:
+         <p>Guess the hidden number!</p>
+    -->
+      </header>
+
+      <!-- =========================================
+       MAIN GAME CARD
+  ========================================== -->
+
+      <section class="game-card">
+        <!-- =========================================
+         MODE SELECTION
+    ========================================== -->
+
+        <section class="mode-section game-section">
+          <label for="gameMode">Select Mode:</label>
+
+          <!-- Drop Down List For Set Playing Mode -->
+
+          <select id="gameMode" onchange="changeMode()">
+            <option value="" selected disabled>Select Mode</option>
+
+            <option value="diff_level_select">Difficulty</option>
+
+            <option value="custom">Custom</option>
+          </select>
+        </section>
+
+        <!-- =========================================
+         GAME SETTINGS
+    ========================================== -->
+
+        <section class="settings-section game-section">
+          <!-- =========================================
+           DIFFICULTY SECTION
+      ========================================== -->
+
+          <div id="difficultySection" style="display: none">
+            <h4>Select Difficulty Level</h4>
+
+            <select id="diff_3" disabled>
+              <option value="default" selected disabled>
+                Select Difficulty Level
+              </option>
+
+              <option value="easy">Easy (1-10)</option>
+
+              <option value="medium">Medium (1-50)</option>
+
+              <option value="hard">Hard (1-100)</option>
+            </select>
+          </div>
+
+          <!-- =========================================
+           CUSTOM SECTION
+      ========================================== -->
+
+          <div id="customSection" style="display: none">
+            <h4>Enter a Minimum and Maximum number</h4>
+
+            <!-- Custom Number Inputs -->
+
+            <div class="input-group">
+              <!-- Minimum Number -->
+
+              <div class="input-field">
+                <label for="min_num"> Minimum Number </label>
+
+                <input
+                  type="number"
+                  id="min_num"
+                  min="0"
+                  max="200"
+                  inputmode="numeric"
+                />
+              </div>
+
+              <!-- Maximum Number -->
+
+              <div class="input-field">
+                <label for="max_num"> Maximum Number </label>
+
+                <input
+                  type="number"
+                  id="max_num"
+                  min="0"
+                  max="200"
+                  required
+                  inputmode="numeric"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================
+         START GAME
+    ========================================== -->
+
+        <section class="start-section game-section">
+          <button type="button" id="startBtn" onclick="start()" disabled>
+            START
+          </button>
+        </section>
+
+        <!-- =========================================
+         GUESS SECTION
+    ========================================== -->
+
+        <section class="guess-section game-section">
+          <p>GUESS THE NUMBER</p>
+
+          <div class="guess-controls">
+            <input
+              type="number"
+              id="guess"
+              min="0"
+              inputmode="numeric"
+              required
+            />
+
+            <button type="button" id="guessBtn" onclick="guess()" disabled>
+              GUESS
+            </button>
+          </div>
+        </section>
+
+        <!-- =========================================
+         GAME STATUS
+    ========================================== -->
+
+        <section class="game-status">
+          <!-- Result / Feedback -->
+
+          <p id="result"></p>
+
+          <!-- Attempts -->
+
+          <p class="attempts-display">
+            Attempts:
+            <span id="attempts">0</span>
+          </p>
+        </section>
+
+        <!-- =========================================
+         FUTURE FEATURES AREA
+    ========================================== -->
+
+        <!--
+    <section class="extra-features">
+
+      Future features can be added here.
+
+      Possible features:
+
+      1. Timer
+      2. Score
+      3. Hints
+      4. Maximum attempts
+      5. Previous guesses
+      6. Guess history
+      7. Best score
+      8. Difficulty information
+      9. Game statistics
+      10. High score / leaderboard
+
+    </section>
+    -->
+
+        <!-- =========================================
+         GAME ACTIONS
+    ========================================== -->
+
+        <section class="game-actions">
+          <button
+            type="button"
+            id="playAgainBtn"
+            onclick="playagain()"
+            disabled
+          >
+            Play Again
+          </button>
+        </section>
+
+        <!-- =========================================
+         FUTURE GAME HISTORY
+    ========================================== -->
+
+        <!--
+    <section class="game-history">
+
+      Future feature:
+
+      Previous game results can be displayed here.
+
+      Example:
+
+      Game 1 → Easy → 5 Attempts
+      Game 2 → Custom → 8 Attempts
+
+    </section>
+    -->
+
+        <!-- =========================================
+         FUTURE STATISTICS
+    ========================================== -->
+
+        <!--
+    <section class="game-statistics">
+
+      Future feature:
+
+      Total Games
+      Games Won
+      Best Attempts
+      Average Attempts
+
+    </section>
+    -->
+      </section>
+
+      <!-- =========================================
+       FUTURE FOOTER
+  ========================================== -->
+
+      <!--
+  <footer class="game-footer">
+
+    Future content can be added here.
+
+    Example:
+    <p>Number Guessing Game</p>
+
+  </footer>
+  -->
+    </main>
+    <script>
+      let Minimum_Num = Number(document.getElementById("min_num").value);
+      let Maximum_Num = Number(document.getElementById("max_num").value);
+      let attempts = 0;
+      let randomNumber;
+      let input_num = Number(document.getElementById("guess").value);
+      let mode;
+
+      ///
+      function changeMode() {
+        mode = document.getElementById("gameMode").value;
+
+        if (mode === "diff_level_select") {
+          document.getElementById("difficultySection").style.display = "block";
+          document.getElementById("customSection").style.display = "none";
+          document.getElementById("startBtn").disabled = false;
+          document.getElementById("diff_3").disabled = false;
+          document.getElementById("playAgainBtn").disabled = true;
+          document.getElementById("gameMode").disabled = false;
+          attempts = 0;
+          diff_3.value = "default";
+          document.getElementById("attempts").textContent = attempts;
+          document.getElementById("guess").value = "";
+          document.getElementById("result").textContent = "";
+          randomNumber = 0;
+          Minimum_Num = 0;
+          Maximum_Num = 0;
+        } else if (mode === "custom") {
+          document.getElementById("difficultySection").style.display = "none";
+          document.getElementById("customSection").style.display = "block";
+          document.getElementById("startBtn").disabled = false;
+          document.getElementById("playAgainBtn").disabled = true;
+          document.getElementById("gameMode").disabled = false;
+          attempts = 0;
+
+          document.getElementById("attempts").textContent = attempts;
+          document.getElementById("guess").value = "";
+          document.getElementById("result").textContent = "";
+          randomNumber = 0;
+          Minimum_Num = 0;
+          Maximum_Num = 0;
+        }
+      }
+      ///
+      function start() {
+        mode = document.getElementById("gameMode").value;
+        let difficulty = document.getElementById("diff_3").value;
+        //
+        document.getElementById("guessBtn").disabled = false;
+        document.getElementById("playAgainBtn").disabled = true;
+        // For Mode Difficulty
+
+        if (mode == "diff_level_select") {
+          document.getElementById("guessBtn").disabled = false;
+          document.getElementById("gameMode").disabled = true;
+          if (difficulty === "easy") {
+            Minimum_Num = 1;
+            Maximum_Num = 10;
+            document.getElementById("startBtn").disabled = true;
+            document.getElementById("diff_3").disabled = true;
+            attempts = 0;
+            randomNumber =
+              Math.floor(Math.random() * (Maximum_Num - Minimum_Num + 1)) +
+              Minimum_Num;
+            localStorage.setItem("randomNumber", randomNumber);
+            document.getElementById("attempts").textContent = attempts;
+            document.getElementById("guess").value = "";
+            document.getElementById("result").textContent = "";
+            console.log(randomNumber);
+          } else if (difficulty === "medium") {
+            Minimum_Num = 1;
+            Maximum_Num = 50;
+            document.getElementById("startBtn").disabled = true;
+            document.getElementById("diff_3").disabled = true;
+            attempts = 0;
+            randomNumber =
+              Math.floor(Math.random() * (Maximum_Num - Minimum_Num + 1)) +
+              Minimum_Num;
+            localStorage.setItem("randomNumber", randomNumber);
+            document.getElementById("attempts").textContent = attempts;
+            document.getElementById("guess").value = "";
+            document.getElementById("result").textContent = "";
+            console.log(randomNumber);
+          } else if (difficulty === "hard") {
+            Minimum_Num = 1;
+            Maximum_Num = 100;
+            document.getElementById("startBtn").disabled = true;
+            document.getElementById("diff_3").disabled = true;
+            attempts = 0;
+            randomNumber =
+              Math.floor(Math.random() * (Maximum_Num - Minimum_Num + 1)) +
+              Minimum_Num;
+            localStorage.setItem("randomNumber", randomNumber);
+            document.getElementById("attempts").textContent = attempts;
+            document.getElementById("guess").value = "";
+            document.getElementById("result").textContent = "";
+            console.log(randomNumber);
+          } else {
+            document.getElementById("result").textContent =
+              "Select A Difficulty Level";
+            document.getElementById("guessBtn").disabled = true;
+            document.getElementById("diff_3").disabled = false;
+          }
+        }
+        // For CUSTOM MODE
+        else {
+          Minimum_Num = Number(document.getElementById("min_num").value);
+          Maximum_Num = Number(document.getElementById("max_num").value);
+
+          if (Minimum_Num == "" || Maximum_Num == "") {
+            document.getElementById("result").textContent = "Enter A Number";
+            document.getElementById("guessBtn").disabled = true;
+          } else if (Minimum_Num < 0 || Maximum_Num < 0) {
+            document.getElementById("result").textContent =
+              "Don't Enter A Negative Number";
+            document.getElementById("guessBtn").disabled = true;
+          } else if (Minimum_Num == Maximum_Num) {
+            document.getElementById("result").textContent =
+              "Both Number Should Not Be Same ";
+            document.getElementById("guessBtn").disabled = true;
+          } else if (Minimum_Num > Maximum_Num) {
+            document.getElementById("result").textContent =
+              " Maximum Number Should Be Greater Than Minimum Number";
+            document.getElementById("guessBtn").disabled = true;
+          } else {
+            document.getElementById("result").textContent = "";
+            document.getElementById("startBtn").disabled = true;
+            document.getElementById("gameMode").disabled = true;
+            randomNumber =
+              Math.floor(Math.random() * (Maximum_Num - Minimum_Num + 1)) +
+              Minimum_Num;
+            localStorage.setItem("randomNumber", randomNumber);
+            console.log(randomNumber);
+          }
+        }
+      }
+
+      ///
+      function guess() {
+        let guess_value = document.getElementById("guess").value;
+        if (guess_value == "") {
+          document.getElementById("result").textContent =
+            "Please Enter A  Number!!";
+        } else if (guess_value <= -1) {
+          document.getElementById("result").textContent =
+            "Don't Enter A Negative Number";
+        } else {
+          input_num = Number(guess_value);
+          let rmd_num = Number(localStorage.getItem("randomNumber"));
+          if (input_num < Minimum_Num || input_num > Maximum_Num) {
+            document.getElementById("result").textContent =
+              `Enter A Number Between ${Minimum_Num} & ${Maximum_Num}`;
+          } else {
+            attempts++;
+            document.getElementById("attempts").textContent = attempts;
+
+            if (input_num > rmd_num) {
+              document.getElementById("result").textContent =
+                `Too High!! Try Again!!`;
+            } else if (input_num < rmd_num) {
+              document.getElementById("result").textContent =
+                `Too Low!! Try Again!!`;
+            } else {
+              document.getElementById("result").textContent =
+                `You Have Guessed The Number ${rmd_num}  Right 🎉 In ${attempts} attempts`;
+              document.getElementById("playAgainBtn").disabled = false;
+              document.getElementById("guessBtn").disabled = true;
+              document.getElementById("diff_3").disabled = false;
+              document.getElementById("startBtn").disabled = false;
+              document.getElementById("gameMode").disabled = false;
+            }
+          }
+        }
+      }
+      ///
+
+      function playagain() {
+        guess_value = document.getElementById("guess").value;
+        if (guess_value == "") {
+          document.getElementById("result").textContent =
+            `Please Enter A Number Before Trying Again!!`;
+        } else {
+          input_num = Number(guess_value);
+          randomNumber =
+            Math.floor(Math.random() * (Maximum_Num - Minimum_Num + 1)) +
+            Minimum_Num;
+          localStorage.setItem("randomNumber", randomNumber);
+
+          attempts = 0;
+
+          document.getElementById("attempts").textContent = attempts;
+          document.getElementById("guess").value = "";
+          document.getElementById("result").textContent = "";
+          document.getElementById("playAgainBtn").disabled = true;
+          document.getElementById("guessBtn").disabled = false;
+          document.getElementById("startBtn").disabled = true;
+          document.getElementById("diff_3").disabled = true;
+          document.getElementById("gameMode").disabled = true;
+          console.log(randomNumber);
+        }
+      }
+    </script>
+  </body>
+</html>

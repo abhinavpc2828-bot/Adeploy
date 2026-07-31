@@ -1,0 +1,453 @@
+/* =========================================
+GLOBAL
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+
+  background: #f4f6f8;
+  color: #20242a;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 50px 20px;
+}
+
+/* =========================================
+MAIN CONTAINER
+========================================= */
+
+.game-container {
+  width: 100%;
+  max-width: 620px;
+}
+
+/* =========================================
+HEADER
+========================================= */
+
+.game-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.game-header h1 {
+  margin: 0 0 8px;
+
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.game-header p {
+  margin: 0;
+
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* =========================================
+MAIN GAME CARD
+========================================= */
+
+.game-card {
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+
+  padding: 30px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+/* =========================================
+COMMON SECTION
+========================================= */
+
+.game-section {
+  margin-bottom: 25px;
+}
+
+.game-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-title {
+  margin: 0 0 12px;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  color: #374151;
+}
+
+/* =========================================
+MODE SECTION
+========================================= */
+
+.mode-section {
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.mode-section label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  color: #374151;
+}
+
+/* =========================================
+SELECT ELEMENTS
+========================================= */
+
+select {
+  width: 100%;
+
+  padding: 11px 13px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+
+  background: #ffffff;
+  color: #20242a;
+
+  font-size: 0.95rem;
+
+  cursor: pointer;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+select:hover {
+  border-color: #9ca3af;
+}
+
+select:focus {
+  border-color: #4b5563;
+
+  box-shadow: 0 0 0 3px rgba(75, 85, 99, 0.1);
+}
+
+select:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* =========================================
+SETTINGS SECTION
+========================================= */
+
+.settings-section {
+  margin-top: 25px;
+}
+
+/* =========================================
+DIFFICULTY / CUSTOM
+========================================= */
+
+#difficultySection,
+#customSection {
+  padding: 20px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  margin-bottom: 20px;
+}
+
+#difficultySection h4,
+#customSection h4 {
+  margin: 0 0 15px;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  color: #374151;
+}
+
+/* =========================================
+CUSTOM INPUTS
+========================================= */
+
+.input-group {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 15px;
+}
+
+.input-field label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  color: #4b5563;
+}
+
+input[type="number"] {
+  width: 100%;
+
+  padding: 11px 13px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  font-size: 0.95rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+input[type="number"]:hover {
+  border-color: #9ca3af;
+}
+
+input[type="number"]:focus {
+  border-color: #4b5563;
+
+  box-shadow: 0 0 0 3px rgba(75, 85, 99, 0.1);
+}
+
+/* =========================================
+BUTTONS
+========================================= */
+
+button {
+  border: none;
+  border-radius: 9px;
+
+  padding: 11px 18px;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+button:not(:disabled):active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* =========================================
+START BUTTON
+========================================= */
+
+#startBtn {
+  width: 100%;
+
+  background: #20242a;
+  color: #ffffff;
+
+  padding: 13px;
+}
+
+#startBtn:not(:disabled):hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+GUESS SECTION
+========================================= */
+
+.guess-section {
+  margin-top: 28px;
+
+  padding-top: 25px;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+.guess-section > p {
+  margin: 0 0 10px;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  color: #374151;
+}
+
+.guess-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.guess-controls input {
+  flex: 1;
+}
+
+#guessBtn {
+  min-width: 100px;
+
+  background: #374151;
+  color: #ffffff;
+}
+
+#guessBtn:not(:disabled):hover {
+  box-shadow: 0 5px 15px rgba(55, 65, 81, 0.2);
+}
+
+/* =========================================
+GAME STATUS
+========================================= */
+
+.game-status {
+  margin-top: 25px;
+
+  padding: 18px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  text-align: center;
+}
+
+#result {
+  min-height: 24px;
+
+  margin: 0 0 10px;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  color: #374151;
+}
+
+.attempts-display {
+  margin: 0;
+
+  font-size: 0.85rem;
+
+  color: #6b7280;
+}
+
+#attempts {
+  font-weight: 700;
+  color: #20242a;
+}
+
+/* =========================================
+GAME ACTIONS
+========================================= */
+
+.game-actions {
+  margin-top: 22px;
+
+  text-align: center;
+}
+
+#playAgainBtn {
+  width: 100%;
+
+  background: #ffffff;
+
+  color: #374151;
+
+  border: 1px solid #d1d5db;
+}
+
+#playAgainBtn:not(:disabled):hover {
+  background: #f9fafb;
+}
+
+/* =========================================
+FUTURE FEATURE AREA
+========================================= */
+
+/*
+You can add future features here:
+
+.extra-features {
+display: grid;
+...
+}
+
+Example future features:
+
+* Timer
+* Score
+* Hints
+* Previous guesses
+* Game history
+  */
+
+/* =========================================
+RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 600px) {
+  body {
+    padding: 25px 15px;
+  }
+
+  .game-card {
+    padding: 22px;
+    border-radius: 14px;
+  }
+
+  .game-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .input-group {
+    grid-template-columns: 1fr;
+  }
+
+  .guess-controls {
+    flex-direction: column;
+  }
+
+  #guessBtn {
+    width: 100%;
+  }
+}
