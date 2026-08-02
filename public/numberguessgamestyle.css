@@ -1,7 +1,3 @@
-/* =========================================
-GLOBAL
-========================================= */
-
 * {
   box-sizing: border-box;
 }
@@ -13,253 +9,214 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-
   font-family: Inter, "Segoe UI", Arial, sans-serif;
-
   background: #f4f6f8;
-  color: #20242a;
-
+  color: #0f172a;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-
-  padding: 50px 20px;
+  padding: 32px 16px;
 }
-
-/* =========================================
-MAIN CONTAINER
-========================================= */
 
 .game-container {
   width: 100%;
-  max-width: 620px;
+  max-width: 680px;
 }
-
-/* =========================================
-HEADER
-========================================= */
 
 .game-header {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+  padding: 18px 12px 6px;
+  background: #ffffff;
+  border-radius: 22px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.05);
 }
 
 .game-header h1 {
-  margin: 0 0 8px;
-
-  font-size: 2.2rem;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-.game-header p {
   margin: 0;
-
-  color: #6b7280;
-  font-size: 0.95rem;
+  font-size: clamp(2rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: #0f172a;
 }
 
-/* =========================================
-MAIN GAME CARD
-========================================= */
+.game-description {
+  margin: 18px auto 24px;
+  max-width: 640px;
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.header-actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.header-btn {
+  padding: 10px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #334155;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.header-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
 
 .game-card {
   background: #ffffff;
-
-  border: 1px solid #e5e7eb;
-  border-radius: 18px;
-
-  padding: 30px;
-
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
 }
 
-/* =========================================
-COMMON SECTION
-========================================= */
+.score-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+  border-radius: 18px;
+  background: #f8fbff;
+  border: 1px solid #e2e8f0;
+}
+
+.score-card__badge {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+.score-card__content {
+  display: grid;
+  gap: 4px;
+}
+
+.score-card__label {
+  margin: 0;
+  color: #475569;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.score-card__value {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.95rem;
+  font-weight: 800;
+}
 
 .game-section {
-  margin-bottom: 25px;
+  margin-bottom: 18px;
 }
 
-.game-section:last-child {
-  margin-bottom: 0;
+.mode-section,
+.settings-section,
+.guess-section,
+.game-status,
+.game-actions {
+  background: #f8fbff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 20px;
 }
-
-.section-title {
-  margin: 0 0 12px;
-
-  font-size: 0.95rem;
-  font-weight: 600;
-
-  color: #374151;
-}
-
-/* =========================================
-MODE SECTION
-========================================= */
 
 .mode-section {
-  padding-bottom: 22px;
-  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 18px;
 }
 
-.mode-section label {
+.mode-section label,
+.guess-section > p,
+#difficultySection h4,
+#customSection h4 {
   display: block;
-
-  margin-bottom: 8px;
-
-  font-size: 0.9rem;
-  font-weight: 600;
-
-  color: #374151;
+  margin-bottom: 10px;
+  color: #334155;
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
-/* =========================================
-SELECT ELEMENTS
-========================================= */
-
-select {
+select,
+input[type="number"] {
   width: 100%;
-
-  padding: 11px 13px;
-
-  border: 1px solid #d1d5db;
-  border-radius: 9px;
-
+  padding: 14px 14px;
+  border-radius: 14px;
+  border: 1px solid #cbd5e1;
   background: #ffffff;
-  color: #20242a;
-
+  color: #0f172a;
   font-size: 0.95rem;
-
-  cursor: pointer;
-
-  outline: none;
-
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
 }
 
-select:hover {
-  border-color: #9ca3af;
+select:hover,
+input[type="number"]:hover {
+  border-color: #94a3b8;
 }
 
-select:focus {
-  border-color: #4b5563;
-
-  box-shadow: 0 0 0 3px rgba(75, 85, 99, 0.1);
+select:focus,
+input[type="number"]:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
 }
 
-select:disabled {
-  background: #f3f4f6;
-  color: #9ca3af;
-  cursor: not-allowed;
+select:disabled,
+input[type="number"]:disabled {
+  background: #f1f5f9;
+  color: #94a3b8;
 }
-
-/* =========================================
-SETTINGS SECTION
-========================================= */
-
-.settings-section {
-  margin-top: 25px;
-}
-
-/* =========================================
-DIFFICULTY / CUSTOM
-========================================= */
 
 #difficultySection,
 #customSection {
-  padding: 20px;
-
-  background: #f8fafc;
-
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-
-  margin-bottom: 20px;
+  background: #f4f7fb;
 }
-
-#difficultySection h4,
-#customSection h4 {
-  margin: 0 0 15px;
-
-  font-size: 0.95rem;
-  font-weight: 600;
-
-  color: #374151;
-}
-
-/* =========================================
-CUSTOM INPUTS
-========================================= */
 
 .input-group {
   display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 15px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .input-field label {
   display: block;
-
-  margin-bottom: 7px;
-
-  font-size: 0.85rem;
+  margin-bottom: 8px;
+  color: #475569;
+  font-size: 0.9rem;
   font-weight: 600;
-
-  color: #4b5563;
 }
-
-input[type="number"] {
-  width: 100%;
-
-  padding: 11px 13px;
-
-  border: 1px solid #d1d5db;
-  border-radius: 9px;
-
-  background: #ffffff;
-
-  font-size: 0.95rem;
-
-  outline: none;
-
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-input[type="number"]:hover {
-  border-color: #9ca3af;
-}
-
-input[type="number"]:focus {
-  border-color: #4b5563;
-
-  box-shadow: 0 0 0 3px rgba(75, 85, 99, 0.1);
-}
-
-/* =========================================
-BUTTONS
-========================================= */
 
 button {
   border: none;
-  border-radius: 9px;
-
-  padding: 11px 18px;
-
-  font-size: 0.9rem;
-  font-weight: 600;
-
+  border-radius: 14px;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
-
   transition:
-    transform 0.15s ease,
+    transform 0.18s ease,
     box-shadow 0.2s ease,
     opacity 0.2s ease;
 }
@@ -268,175 +225,281 @@ button:not(:disabled):hover {
   transform: translateY(-1px);
 }
 
-button:not(:disabled):active {
-  transform: translateY(0);
-}
-
 button:disabled {
-  opacity: 0.45;
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
-/* =========================================
-START BUTTON
-========================================= */
-
 #startBtn {
   width: 100%;
-
-  background: #20242a;
+  background: #2563eb;
   color: #ffffff;
-
-  padding: 13px;
-}
-
-#startBtn:not(:disabled):hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* =========================================
-GUESS SECTION
-========================================= */
-
-.guess-section {
-  margin-top: 28px;
-
-  padding-top: 25px;
-
-  border-top: 1px solid #e5e7eb;
-}
-
-.guess-section > p {
-  margin: 0 0 10px;
-
-  font-size: 0.95rem;
-  font-weight: 600;
-
-  color: #374151;
-}
-
-.guess-controls {
-  display: flex;
-  gap: 10px;
-}
-
-.guess-controls input {
-  flex: 1;
 }
 
 #guessBtn {
-  min-width: 100px;
-
-  background: #374151;
+  flex: 0 0 128px;
+  min-width: 120px;
+  width: 128px;
+  background: #2563eb;
   color: #ffffff;
-}
-
-#guessBtn:not(:disabled):hover {
-  box-shadow: 0 5px 15px rgba(55, 65, 81, 0.2);
-}
-
-/* =========================================
-GAME STATUS
-========================================= */
-
-.game-status {
-  margin-top: 25px;
-
-  padding: 18px;
-
-  background: #f8fafc;
-
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-
-  text-align: center;
-}
-
-#result {
-  min-height: 24px;
-
-  margin: 0 0 10px;
-
-  font-size: 0.95rem;
-  font-weight: 600;
-
-  color: #374151;
-}
-
-.attempts-display {
-  margin: 0;
-
-  font-size: 0.85rem;
-
-  color: #6b7280;
-}
-
-#attempts {
-  font-weight: 700;
-  color: #20242a;
-}
-
-/* =========================================
-GAME ACTIONS
-========================================= */
-
-.game-actions {
-  margin-top: 22px;
-
-  text-align: center;
 }
 
 #playAgainBtn {
   width: 100%;
-
   background: #ffffff;
-
-  color: #374151;
-
-  border: 1px solid #d1d5db;
+  color: #334155;
+  border: 1px solid #cbd5e1;
 }
 
 #playAgainBtn:not(:disabled):hover {
-  background: #f9fafb;
+  background: #f8fbff;
 }
 
-/* =========================================
-FUTURE FEATURE AREA
-========================================= */
-
-/*
-You can add future features here:
-
-.extra-features {
-display: grid;
-...
+.guess-section {
+  padding-top: 18px;
+  border-top: 1px solid #e2e8f0;
 }
 
-Example future features:
+.guess-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
 
-* Timer
-* Score
-* Hints
-* Previous guesses
-* Game history
-  */
+.guess-controls input {
+  flex: 1;
+  min-width: 0;
+}
 
-/* =========================================
-RESPONSIVE DESIGN
-========================================= */
+.game-status {
+  text-align: left;
+}
 
-@media (max-width: 600px) {
+.status-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2563eb;
+}
+
+#result {
+  margin: 0 0 14px;
+  min-height: 24px;
+  color: #0f172a;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.attempts-display {
+  margin: 0;
+  color: #475569;
+  font-size: 0.92rem;
+}
+
+#attempts,
+#currentBestScore {
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.current-score {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #334155;
+}
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.game-footer {
+  margin-top: 28px;
+  padding: 22px 18px;
+  text-align: center;
+  color: #475569;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 22px;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.05);
+}
+
+.footer-content {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.footer-title {
+  margin-bottom: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.footer-text {
+  max-width: 480px;
+  margin: 0 auto;
+  font-size: 0.84rem;
+  line-height: 1.7;
+  color: #64748b;
+}
+
+.footer-divider {
+  width: 52px;
+  height: 1px;
+  margin: 16px auto;
+  background: #e2e8f0;
+}
+
+.footer-copyright {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.footer-dot {
+  margin: 0 5px;
+}
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.15);
+}
+
+.dialog-overlay.active {
+  display: flex;
+}
+
+.dialog-box {
+  width: 100%;
+  max-width: 520px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #0f172a;
+}
+
+.dialog-close {
+  border: none;
+  background: #f8fafc;
+  color: #0f172a;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.dialog-content {
+  padding: 20px 22px 24px;
+}
+
+.dialog-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px;
+  margin-bottom: 14px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.dialog-step-number {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.dialog-step h3 {
+  margin: 0 0 4px;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+.dialog-step p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: #475569;
+}
+
+.feature-item span {
+  color: #2563eb;
+}
+
+@media (max-width: 900px) {
+  .game-card {
+    padding: 24px;
+  }
+
+  .game-status,
+  .mode-section,
+  .settings-section,
+  .guess-section,
+  .game-actions {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 720px) {
   body {
-    padding: 25px 15px;
+    padding: 24px 14px;
+  }
+
+  .game-container {
+    max-width: 100%;
   }
 
   .game-card {
     padding: 22px;
-    border-radius: 14px;
-  }
-
-  .game-header h1 {
-    font-size: 1.8rem;
   }
 
   .input-group {
@@ -445,9 +508,45 @@ RESPONSIVE DESIGN
 
   .guess-controls {
     flex-direction: column;
+    gap: 12px;
+  }
+
+  .guess-controls input,
+  #startBtn,
+  #playAgainBtn {
+    width: 100%;
   }
 
   #guessBtn {
     width: 100%;
+    flex: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .score-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .game-header {
+    padding: 16px 14px;
+  }
+
+  .game-description {
+    margin-bottom: 20px;
+  }
+
+  .game-footer {
+    padding: 18px 14px;
+  }
+
+  .footer-text,
+  .footer-copyright {
+    font-size: 0.82rem;
   }
 }
