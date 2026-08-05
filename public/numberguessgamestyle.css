@@ -1,3 +1,6 @@
+/* =========================================
+GLOBAL
+========================================= */
 * {
   box-sizing: border-box;
 }
@@ -22,6 +25,10 @@ body {
   width: 100%;
   max-width: 680px;
 }
+
+/* =========================================
+HEADER
+========================================= */
 
 .game-header {
   text-align: center;
@@ -77,6 +84,10 @@ body {
   transform: translateY(-1px);
 }
 
+/* =========================================
+MAIN CARD
+========================================= */
+
 .game-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
@@ -127,6 +138,10 @@ body {
   font-size: 1.95rem;
   font-weight: 800;
 }
+
+/* =========================================
+SECTION STYLES
+========================================= */
 
 .game-section {
   margin-bottom: 18px;
@@ -271,6 +286,10 @@ button:disabled {
   min-width: 0;
 }
 
+/* =========================================
+GAME STATUS
+========================================= */
+
 .game-status {
   text-align: left;
 }
@@ -326,6 +345,10 @@ input:focus-visible {
   outline-offset: 2px;
 }
 
+/* =========================================
+FOOTER
+========================================= */
+
 .game-footer {
   margin-top: 28px;
   padding: 22px 18px;
@@ -373,6 +396,10 @@ input:focus-visible {
 .footer-dot {
   margin: 0 5px;
 }
+
+/* =========================================
+DIALOG
+========================================= */
 
 .dialog-overlay {
   position: fixed;
@@ -474,6 +501,10 @@ input:focus-visible {
 .feature-item span {
   color: #2563eb;
 }
+
+/* =========================================
+RESPONSIVE
+========================================= */
 
 @media (max-width: 900px) {
   .game-card {
