@@ -410,15 +410,15 @@ displayAllTimeBestScore();
 
 //Sound Feature
 let soundEnabled = true;
-const startsound = new Audio("sounds/start.mp3");
+const startsound = new Audio("/start.mp3");
 startsound.volume = 0.9;
-const guesssound = new Audio("sounds/guess.mp3");
+const guesssound = new Audio("/guess.mp3");
 guesssound.volume = 0.9;
-const gameloop = new Audio("sounds/game-loop.mp3");
+const gameloop = new Audio("/game-loop.mp3");
 gameloop.loop = true;
 gameloop.volume = 0.22;
 
-const correctguessSound = new Audio("sounds/correctguess.mp3");
+const correctguessSound = new Audio("/correctguess.mp3");
 correctguessSound.volume = 0.45;
 function toggleSound() {
   soundEnabled = !soundEnabled;
