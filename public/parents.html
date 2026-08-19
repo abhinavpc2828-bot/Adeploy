@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parents - School Management System</title>
+    <link rel="stylesheet"href="../css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">📚</div>
+          <div class="sidebar-title">SCHOOLING</div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="nav-item" data-page="dashboard">
+            <span class="nav-icon">📊</span>
+            <span>Dashboard</span>
+          </a>
+          <a href="employee.html" class="nav-item" data-page="employee">
+            <span class="nav-icon">👔</span>
+            <span>Employee</span>
+          </a>
+         
+          <a href="../students.html" class="nav-item" data-page="student">
+            <span class="nav-icon">👨‍🎓</span>
+            <span>Student</span>
+          <a href="parents.html" class="nav-item active" data-page="parent">
+            <span class="nav-icon">👨‍👩‍👧</span>
+            <span>Parent</span>
+          </a>
+          <a href="applications.html" class="nav-item" data-page="applications">
+            <span class="nav-icon">📋</span>
+            <span>Applications</span>
+          </a>
+          <a href="academics.html" class="nav-item" data-page="academics">
+            <span class="nav-icon">📚</span>
+            <span>Academics</span>
+          </a>
+          <a href="calendar.html" class="nav-item" data-page="calendar">
+            <span class="nav-icon">📅</span>
+            <span>Calendar</span>
+          </a>
+          <a href="records.html" class="nav-item" data-page="records">
+            <span class="nav-icon">📄</span>
+            <span>Records</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <a href="settings.html" class="nav-item" data-page="settings">
+            <span class="nav-icon">⚙️</span>
+            <span>Settings</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <div class="main-wrapper">
+        <header class="header">
+          <div class="header-left">
+            <button
+              class="icon-button"
+              style="display: none"
+              id="mobileMenuBtn"
+            >
+              ☰
+            </button>
+            <h1 class="header-title">Parents</h1>
+          <marquee>This Feature will be available soon...</marquee>
+          </div>
+
+          <div class="header-right">
+            <div class="search-box">
+              <span>🔍</span>
+              <input type="text" placeholder="Search parents..." />
+            </div>
+            <button class="icon-button">🔔</button>
+            <div class="user-profile">
+              <div class="user-avatar">AD</div>
+              <div class="user-info">
+                <div class="user-name">Admin</div>
+                <div class="user-role">Administrator</div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="main-content">
+          <!-- PAGE ACTIONS -->
+          <div
+            style="
+              display: flex;
+              gap: 12px;
+              margin-bottom: 24px;
+              flex-wrap: wrap;
+            "
+          >
+            <button class="btn btn-primary"><span>+</span> Add Parent</button>
+            <button class="btn btn-secondary">
+              <span>✉️</span> Send Message
+            </button>
+          </div>
+
+          <!-- PARENT TABLE -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Parent Management</div>
+              
+            </div>
+
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th><input type="checkbox" /></th>
+                    <th>Parent Name</th>
+                    <th>Student Name</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Relationship</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                
+          <!-- COMING SOON NOTICE -->
+          <div
+            class="card"
+            style="
+              margin-top: 32px;
+              background-color: #f3f4f6;
+              border: 1px solid #e5e7eb;
+              padding: 32px;
+              text-align: center;
+            "
+          >
+           
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

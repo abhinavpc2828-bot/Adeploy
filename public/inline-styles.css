@@ -1,0 +1,766 @@
+/* ====================================
+   INLINE STYLES MOVED TO CSS FILE
+   ==================================== */
+
+/* Mobile menu button - hidden by default */
+#mobileMenuBtn {
+  display: none;
+}
+
+/* Container sections */
+.quick-actions-container {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Calendar and dashboard grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+}
+
+.calendar-content {
+  padding: 16px;
+}
+
+.calendar-header-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.calendar-day-header {
+  font-weight: 600;
+  font-size: 12px;
+  color: #6b7280;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.calendar-day-past {
+  background-color: #f9fafb;
+  color: #6b7280;
+}
+
+.calendar-day-current {
+  background-color: #dbeafe;
+  border: 1px solid #bfdbfe;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.calendar-day-future {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #1f2937;
+}
+
+.calendar-note {
+  margin-top: 16px;
+  padding: 12px;
+  background-color: #f9fafb;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* Right side panel */
+.dashboard-right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Activity item */
+.activity-item {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.activity-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.activity-time {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.activity-icon-new-student {
+  background: #dbeafe;
+}
+
+.activity-icon-application {
+  background: #fef3c7;
+}
+
+.activity-icon-approved {
+  background: #d1fae5;
+}
+
+.activity-icon-record {
+  background: #cffafe;
+}
+
+/* Application breakdown section */
+.app-breakdown-container {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.app-breakdown-number {
+  font-size: 48px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.app-breakdown-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.app-breakdown-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+.app-breakdown-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.app-breakdown-value-pending {
+  font-weight: 600;
+  color: #f59e0b;
+}
+
+.app-breakdown-value-closed {
+  font-weight: 600;
+  color: #10b981;
+}
+
+.app-breakdown-value-approved {
+  font-weight: 600;
+  color: #2563eb;
+}
+
+/* What's new card */
+.whats-new-card {
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+}
+
+.whats-new-content {
+  padding: 4px 0;
+}
+
+.whats-new-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.whats-new-text {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+/* Student table cell styling */
+.student-name {
+  font-weight: 500;
+}
+
+/* Pagination section */
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.pagination-info {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.pagination-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Search options card */
+.search-options-header {
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 16px;
+}
+
+.search-options-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.search-options-group {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.search-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.search-radio-text {
+  font-size: 14px;
+  color: #1f2937;
+}
+
+/* Page actions container */
+.page-actions-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+/* Student list card actions */
+.student-list-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Modal styles */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content-small {
+  max-width: 400px;
+}
+
+.modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.modal-body-small {
+  padding: 20px;
+}
+
+.modal-footer {
+  padding: 16px 20px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.modal-coming-soon {
+  font-size: 14px;
+  color: #6b7280;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* Form layout */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* Card margins */
+.card-margin-bottom {
+  margin-bottom: 24px;
+}
+
+.card-margin-top {
+  margin-top: 32px;
+}
+
+/* Actions grid styling */
+.actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+}
+
+/* Tab styling */
+.tabs-container {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+}
+
+.tabs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tab-button {
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #6b7280;
+  border-radius: 6px;
+  transition: var(--transition);
+  text-align: left;
+}
+
+.tab-button:hover {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+.tab-button-active {
+  background-color: #dbeafe;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.tab-content {
+  padding: 24px;
+}
+
+.tab-content-hidden {
+  display: none;
+}
+
+/* Settings card styling */
+.settings-card {
+  display: none;
+}
+
+.settings-card-active {
+  display: block;
+}
+
+.settings-section {
+  padding: 24px;
+}
+
+.settings-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+/* Setting group */
+.settings-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.settings-group-label {
+  flex: 1;
+}
+
+.settings-group-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.settings-group-description {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Toggle switch (visual only) */
+.toggle-switch {
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: #e5e7eb;
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.toggle-switch-checked {
+  background-color: #2563eb;
+}
+
+.toggle-switch-slider {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: var(--transition);
+}
+
+.toggle-switch-checked .toggle-switch-slider {
+  left: 22px;
+}
+
+/* Record cards grid */
+.records-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.record-card-item {
+  padding: 20px;
+  text-align: center;
+}
+
+.record-card-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.record-card-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.record-card-description {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+/* Employee management styling */
+.employee-section {
+  margin-bottom: 24px;
+}
+
+.employee-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+/* Calendar view styling */
+.calendar-view-header {
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-view-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.calendar-view-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.calendar-table-container {
+  overflow-x: auto;
+}
+
+/* Parent management styling */
+.parent-action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+/* Applications filter buttons */
+.app-filter-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.app-filter-btn {
+  padding: 10px 16px;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  color: #1f2937;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.app-filter-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.app-filter-btn-active {
+  background-color: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* Academics modules grid */
+.academics-modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.module-card {
+  padding: 20px;
+  text-align: center;
+}
+
+.module-card-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.module-card-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.module-card-count {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 12px;
+}
+
+/* Marks and attendance tables */
+.marks-table-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #1f2937;
+  margin-bottom: 16px;
+  margin-top: 24px;
+}
+
+.attendance-table-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #1f2937;
+  margin-bottom: 16px;
+  margin-top: 24px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-right-panel {
+    grid-column: 1;
+  }
+
+  .form-row-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .academics-modules-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  #mobileMenuBtn {
+    display: block;
+  }
+
+  .quick-actions {
+    flex-direction: column;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs-container {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs-list {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 4px;
+  }
+
+  .tab-button {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .academics-modules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .modal-content {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .page-actions-container {
+    flex-direction: column;
+  }
+
+  .page-actions-container .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-day-header,
+  .calendar-day {
+    font-size: 11px;
+    padding: 4px 0;
+  }
+
+  .app-breakdown-number {
+    font-size: 36px;
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 16px;
+  }
+
+  .pagination-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pagination-buttons {
+    width: 100%;
+  }
+
+  .pagination-buttons .btn {
+    flex: 1;
+  }
+}

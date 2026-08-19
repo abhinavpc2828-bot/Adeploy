@@ -1,0 +1,103 @@
+<!-- SHARED SIDEBAR AND HEADER COMPONENT -->
+<!-- Include this in every page -->
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">📚</div>
+    <div class="sidebar-title">SCHOOLING</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a href="dashboard.html" class="nav-item" data-page="dashboard">
+      <span class="nav-icon">📊</span>
+      <span>Dashboard</span>
+    </a>
+    <a href="employee.html" class="nav-item" data-page="employee">
+      <span class="nav-icon">👔</span>
+      <span>Employee</span>
+    </a>
+    <a href="../students.html" class="nav-item" data-page="student">
+            <span class="nav-icon">👨‍🎓</span>
+            <span>Student</span>
+    <a href="parents.html" class="nav-item" data-page="parent">
+      <span class="nav-icon">👨‍👩‍👧</span>
+      <span>Parent</span>
+    </a>
+    <a href="applications.html" class="nav-item" data-page="applications">
+      <span class="nav-icon">📋</span>
+      <span>Applications</span>
+    </a>
+    <a href="academics.html" class="nav-item" data-page="academics">
+      <span class="nav-icon">📚</span>
+      <span>Academics</span>
+    </a>
+    <a href="calendar.html" class="nav-item" data-page="calendar">
+      <span class="nav-icon">📅</span>
+      <span>Calendar</span>
+    </a>
+    <a href="records.html" class="nav-item" data-page="records">
+      <span class="nav-icon">📄</span>
+      <span>Records</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <a href="settings.html" class="nav-item" data-page="settings">
+      <span class="nav-icon">⚙️</span>
+      <span>Settings</span>
+    </a>
+  </div>
+</aside>
+
+<div class="main-wrapper">
+  <header class="header">
+    <div class="header-left">
+      <button
+        class="icon-button"
+        onclick="toggleSidebar()"
+        style="display: none"
+        id="mobileMenuBtn"
+      >
+        ☰
+      </button>
+      <h1 class="header-title" id="pageTitle">Dashboard</h1>
+    </div>
+
+    <div class="header-right">
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" placeholder="Search..." />
+      </div>
+
+      <button class="icon-button">🔔</button>
+
+      <div class="user-profile">
+        <div class="user-avatar">AD</div>
+        <div class="user-info">
+          <div class="user-name">Admin</div>
+          <div class="user-role">Administrator</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content" id="mainContent">
+    <!-- Page content goes here -->
+  </main>
+</div>
+
+<script>
+  // Show mobile menu button on smaller screens
+  function checkScreenSize() {
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    if (window.innerWidth <= 768) {
+      mobileMenuBtn.style.display = "flex";
+    } else {
+      mobileMenuBtn.style.display = "none";
+      closeSidebar();
+    }
+  }
+
+  window.addEventListener("resize", checkScreenSize);
+  document.addEventListener("DOMContentLoaded", checkScreenSize);
+</script>

@@ -1,0 +1,557 @@
+/* =========================================
+   STUDENTS PAGE
+   ========================================= */
+
+/* =========================================
+   PAGE ACTIONS
+   ========================================= */
+
+.page-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+/* =========================================
+   SEARCH CARD
+   ========================================= */
+
+.search-card {
+  margin-bottom: 24px;
+  padding: 0;
+}
+
+/* SEARCH CARD HEADER */
+
+.search-card-header {
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+
+  font-weight: 600;
+  font-size: 14px;
+
+  color: #1f2937;
+}
+
+/* =========================================
+   SEARCH OPTIONS
+   ========================================= */
+
+.search-options {
+  display: flex;
+  gap: 24px;
+
+  padding: 16px 16px 12px;
+
+  flex-wrap: wrap;
+}
+
+.search-option {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+  color: #1f2937;
+}
+
+.search-option input {
+  width: 16px;
+  height: 16px;
+
+  margin: 0;
+
+  cursor: pointer;
+}
+
+/* =========================================
+   SEARCH INPUT
+   ========================================= */
+
+.student-search {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  margin: 0 16px 16px;
+}
+
+.student-search-icon {
+  position: absolute;
+
+  left: 14px;
+
+  font-size: 15px;
+
+  pointer-events: none;
+}
+
+.student-search input {
+  width: 100%;
+
+  height: 42px;
+
+  padding: 0 14px 0 42px;
+
+  border: 1px solid #d1d5db;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  font-size: 14px;
+
+  color: #1f2937;
+
+  background: #ffffff;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.student-search input::placeholder {
+  color: #9ca3af;
+}
+
+.student-search input:focus {
+  border-color: #8b5cf6;
+
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+/* =========================================
+   STUDENT LIST
+   ========================================= */
+
+.student-list-card {
+  overflow: hidden;
+}
+
+/* =========================================
+   TABLE ACTIONS
+   ========================================= */
+
+.student-table-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.menu-dot {
+  width: 34px;
+  height: 34px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: #6b7280;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.menu-dot:hover {
+  background: #f3f4f6;
+}
+
+/* =========================================
+   TABLE CONTAINER
+   ========================================= */
+
+.student-table-container {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+/* =========================================
+   COMING SOON MESSAGE
+   ========================================= */
+
+.coming-soon {
+  padding: 40px 20px;
+
+  text-align: center;
+
+  color: #9ca3af;
+
+  font-size: 14px;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .page-actions {
+    flex-direction: column;
+  }
+
+  .page-actions .btn {
+    width: 100%;
+  }
+
+  .search-options {
+    gap: 16px;
+
+    flex-direction: column;
+  }
+
+  .student-table-actions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-card-header {
+    padding: 14px;
+  }
+
+  .search-options {
+    padding: 14px;
+  }
+
+  .student-search {
+    margin: 0 14px 14px;
+  }
+
+  .student-table-actions .btn-small {
+    font-size: 12px;
+  }
+}
+/* =========================================
+   FLOATING LABEL INPUTS
+   ========================================= */
+
+.floating-input {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================
+   INPUT
+   ========================================= */
+
+.floating-input input {
+  width: 100%;
+  height: 58px;
+
+  padding: 22px 14px 6px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #1f2937;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+/* =========================================
+   FLOATING LABEL
+   ========================================= */
+
+.floating-label {
+  position: absolute;
+
+  left: 14px;
+  top: 19px;
+
+  color: #6b7280;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  pointer-events: none;
+
+  transform-origin: left top;
+
+  transition:
+    top 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+/* =========================================
+   HOVER
+   ========================================= */
+
+.floating-input input:hover {
+  border-color: #9ca3af;
+}
+
+/* =========================================
+   FOCUS
+   ========================================= */
+
+.floating-input input:focus {
+  border-color: #8b5cf6;
+
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+
+  background: #ffffff;
+}
+
+/* =========================================
+   LABEL WHEN FOCUSED
+   ========================================= */
+
+.floating-input input:focus + .floating-label {
+  top: 8px;
+
+  color: #8b5cf6;
+
+  transform: scale(0.75);
+}
+
+/* =========================================
+   LABEL WHEN INPUT HAS VALUE
+   ========================================= */
+
+.floating-input input:not(:placeholder-shown) + .floating-label {
+  top: 8px;
+
+  color: #6b7280;
+
+  transform: scale(0.75);
+}
+
+/* =========================================
+   LABEL WHEN VALUE + FOCUS
+   ========================================= */
+
+.floating-input input:focus:not(:placeholder-shown) + .floating-label {
+  color: #8b5cf6;
+}
+
+/* =========================================
+   NUMBER INPUT
+   ========================================= */
+
+.floating-input input[type="number"] {
+  appearance: textfield;
+}
+
+.floating-input input[type="number"]::-webkit-inner-spin-button,
+.floating-input input[type="number"]::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+/* =========================================
+   FORM GRID
+   ========================================= */
+
+.student-form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+
+  width: 100%;
+}
+
+/* =========================================
+   FORM CARD
+   ========================================= */
+
+.student-form-card {
+  padding: 24px;
+}
+
+/* =========================================
+   FORM TITLE
+   ========================================= */
+
+.student-form-title {
+  margin-bottom: 20px;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  color: #1f2937;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 700px) {
+  .student-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .student-form-card {
+    padding: 16px;
+  }
+
+  .floating-input input {
+    height: 56px;
+  }
+}
+/* =========================================
+   STUDENT / MARKS ACTION BUTTONS
+   ========================================= */
+
+.student-add-btn,
+.marks-add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 40px;
+
+  padding: 0 16px;
+
+  border: none;
+  border-radius: 8px;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+/* ADD STUDENT */
+
+.student-add-btn {
+  background: #8b5cf6;
+  color: #ffffff;
+}
+
+/* ADD MARKS */
+
+.marks-add-btn {
+  background: #7c3aed;
+  color: #ffffff;
+}
+
+/* PLUS ICON */
+
+.student-add-btn span,
+.marks-add-btn span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* HOVER */
+
+.student-add-btn:hover,
+.marks-add-btn:hover {
+  transform: translateY(-1px);
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ACTIVE / CLICK */
+
+.student-add-btn:active,
+.marks-add-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================
+   ADD MARKS FORM
+   ========================================= */
+
+.student-form-subtitle {
+  margin-top: -12px;
+  margin-bottom: 22px;
+
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+/* =========================================
+   FORM BUTTON
+   ========================================= */
+
+.form-button-container {
+  display: flex;
+
+  justify-content: flex-end;
+
+  margin-top: 24px;
+}
+
+.save-marks-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  min-width: 120px;
+  height: 40px;
+
+  padding: 0 16px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #8b5cf6;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.save-marks-btn:hover {
+  transform: translateY(-1px);
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.save-marks-btn:active {
+  transform: translateY(0);
+}
