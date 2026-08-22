@@ -167,68 +167,12 @@ let Students = JSON.parse(localStorage.getItem("students")) || [
   },
 ];
 
-const displayBtn = document.getElementById("displayBtn");
+const displayBtn = document.getElementById("student_Disp_data");
 const display_marks = document.getElementById("display_marks");
-const studentTable = document.getElementById("studentTable");
 
-displayBtn.addEventListener("click", student_Disp_data);
-display_marks.addEventListener("click", disp_student_marks);
+/// Display Student Data Content  [Remove This ]
 
-// Display Student Data
-function new_Student_add_content_disp() {
-  studentTable.innerHTML = ` <div class="card student-form-card">
-
-    <div class="student-form-title">
-      Add New Student
-    </div>
-
-    <div class="student-form-grid">
-
-      <label class="floating-input">
-        <input
-          type="text"
-          id="student_name"
-          placeholder=" "
-        >
-        <span class="floating-label">
-          Student Name
-        </span>
-      </label>
-
-      <label class="floating-input">
-        <input
-          type="number"
-          id="student_age"
-          placeholder=" "
-        >
-        <span class="floating-label">
-          Age
-        </span>
-      </label>
-
-      <label class="floating-input">
-        <input
-          type="number"
-          id="Y_o_Addmmited"
-          placeholder=" "
-        >
-        <span class="floating-label">
-          Year of Admission
-        </span>
-      </label>
-<button
-  class="btn btn-primary student-add-btn"
-  type="button"
-  onclick="new_Student_add()"
->
-  <span>+</span>
-  Add Student
-</button>
-    </div>
-
-  </div>
-`;
-}
+///Add new Student Data
 function new_Student_add() {
   const input_new_student_Name = document
     .getElementById("student_name")
@@ -281,7 +225,9 @@ function new_Student_add() {
   localStorage.setItem("students", JSON.stringify(Students));
   window.alert(`New Student ${input_new_student_Name} is successfully added`);
 }
+///Display Student Data
 function student_Disp_data() {
+  const studentTable = document.getElementById("studentTable");
   let table = `
             <table border="2">
 
@@ -312,8 +258,10 @@ function student_Disp_data() {
 
   studentTable.innerHTML = table;
 }
-
-function search_Student() {
+/// Function For Search Box
+function search_Box() {
+  const studentTable = document.getElementById("studentTable");
+  const search_using_roll = document.getElementById("search_using_roll");
   let search_Value = document.getElementById("search_Box").value;
 
   let result;
@@ -420,15 +368,178 @@ function search_Student() {
     }
   }
 }
-function add_student_marks_content_disp() {
-  studentTable.innerHTML = ` <div class="card student-form-card">
+/// Display Marks Content    [Remove This ]
+
+/// Add Latest Students Marks
+function add_student_marks() {
+  /// Add new input for subjects
+  ///const input_new_student_Name = document
+  ///  .getElementById("student_name")
+  // .value.trim()
+  // .toLowerCase();
+  /*
+  let first_name = input_new_student_Name.slice(
+    0,
+    input_new_student_Name.indexOf(" "),
+  );
+  first_name =
+    first_name.charAt(0).toUpperCase() +
+    first_name.trim().slice(1).toLowerCase();
+  let last_name = input_new_student_Name.slice(
+    input_new_student_Name.indexOf(" ") + 1,
+  );
+
+  last_name =
+    last_name.charAt(0).toUpperCase() + last_name.trim().slice(1).toLowerCase();*/
+  let latestStudent = Students[Students.length - 1];
+  const input_new_student_Sub_physics = Number(
+    document.getElementById("subj_Physics").value,
+  );
+  const input_new_student_Sub_chemistry = Number(
+    document.getElementById("subj_Chemistry").value,
+  );
+  const input_new_student_Sub_maths = Number(
+    document.getElementById("subj_Maths").value,
+  );
+  latestStudent.marks = {
+    physics: input_new_student_Sub_physics,
+    chemistry: input_new_student_Sub_chemistry,
+    maths: input_new_student_Sub_maths,
+  };
+
+  localStorage.setItem("students", JSON.stringify(Students));
+  window.alert(
+    ` Student ${latestStudent.First_Name + " " + latestStudent.Last_Name} Marks is successfully added`,
+  );
+}
+///Show The Marks Data
+function disp_student_marks() {
+  const studentTable = document.getElementById("studentTable");
+  let table = `
+            <table border="2">
+
+                <tr>
+                    <th>Roll Number</th>
+                    <th> Name</th>
+                    <th> Physics</th>
+                    <th> Chemistry</th>
+                    <th>Maths</th>
+
+                </tr>
+        `;
+
+  Students.forEach(function (Students) {
+    table += `
+                <tr>
+                      <td>${Students.id}</td>
+                    <td>${Students.First_Name} ${Students.Last_Name}</td>
+                    <td>${Students.marks?.physics ?? "Not Added"}</td>
+                    <td>${Students.marks?.chemistry ?? "Not Added"}</td>
+                    <td>${Students.marks?.maths ?? "Not Added"}</td>
+
+                </tr>
+            `;
+  });
+
+  table += `</table>`;
+
+  studentTable.innerHTML = table;
+}
+
+///Student Side Bar
+
+//// Features for closing student options
+const side_bar_button = document.getElementById("side_bar_button");
+
+const student_menu = document.querySelector(".student-floating-menu");
+
+const student_menu_options = document.querySelector(".student-menu-options");
+
+// OPEN / CLOSE MENU
+side_bar_button.addEventListener("click", function (event) {
+  // Prevent document click from immediately closing it
+  event.stopPropagation();
+
+  student_menu_options.classList.toggle("active");
+});
+
+// CLOSE WHEN CLICKING OUTSIDE
+document.addEventListener("click", function (event) {
+  if (!student_menu.contains(event.target)) {
+    student_menu_options.classList.remove("active");
+  }
+});
+
+//logic for switching between different options
+document.getElementById("side_bar_button").onclick = () => {
+  document.getElementById("new_Student_add_content_disp").onclick = () => {
+    main_content.innerHTML = ` <div class="card student-form-card">
+
+    <div class="student-form-title">
+      Add New Student
+    </div>
+
+    <div class="student-form-grid">
+
+      <label class="floating-input">
+        <input
+          type="text"
+          id="student_name"
+          placeholder=" "
+        >
+        <span class="floating-label">
+          Student Name
+        </span>
+      </label>
+
+      <label class="floating-input">
+        <input
+          type="number"
+          id="student_age"
+          placeholder=" "
+        >
+        <span class="floating-label">
+          Age
+        </span>
+      </label>
+
+      <label class="floating-input">
+        <input
+          type="number"
+          id="Y_o_Addmmited"
+          placeholder=" "
+        >
+        <span class="floating-label">
+          Year of Admission
+        </span>
+      </label>
+<button
+  class="btn btn-primary student-add-btn"
+  type="button"
+  id="new_Student_add"
+  
+>
+  <span>+</span>
+  Add Student
+</button>
+    </div>
+
+  </div>
+`;
+    document.getElementById("new_Student_add").onclick = () => {
+      new_Student_add();
+    };
+  };
+
+  document.getElementById("add_student_marks_content_disp").onclick = () => {
+    main_content.innerHTML = ` <div class="card student-form-card">
 
       <div class="student-form-title">
         Add Student Marks
       </div>
 
       <div class="student-form-subtitle">
-        Enter marks for the latest added student 
+        Enter marks for the latest  added student 
       </div>
 
       <div class="student-form-grid">
@@ -473,7 +584,8 @@ function add_student_marks_content_disp() {
         <button
           type="button"
           class="btn btn-primary save-marks-btn"
-          onclick="add_student_marks()"
+          id="add_student_marks"
+         
         >
           <span>✓</span>
           Save Marks
@@ -483,76 +595,95 @@ function add_student_marks_content_disp() {
 
     </div>
   `;
-}
-function add_student_marks() {
-  /// Add new input for subjects
-  ///const input_new_student_Name = document
-  ///  .getElementById("student_name")
-  // .value.trim()
-  // .toLowerCase();
-  /*
-  let first_name = input_new_student_Name.slice(
-    0,
-    input_new_student_Name.indexOf(" "),
-  );
-  first_name =
-    first_name.charAt(0).toUpperCase() +
-    first_name.trim().slice(1).toLowerCase();
-  let last_name = input_new_student_Name.slice(
-    input_new_student_Name.indexOf(" ") + 1,
-  );
-
-  last_name =
-    last_name.charAt(0).toUpperCase() + last_name.trim().slice(1).toLowerCase();*/
-  let latestStudent = Students[Students.length - 1];
-  const input_new_student_Sub_physics = Number(
-    document.getElementById("subj_Physics").value,
-  );
-  const input_new_student_Sub_chemistry = Number(
-    document.getElementById("subj_Chemistry").value,
-  );
-  const input_new_student_Sub_maths = Number(
-    document.getElementById("subj_Maths").value,
-  );
-  latestStudent.marks = {
-    physics: input_new_student_Sub_physics,
-    chemistry: input_new_student_Sub_chemistry,
-    maths: input_new_student_Sub_maths,
+    document.getElementById("add_student_marks").onclick = () => {
+      add_student_marks();
+    };
   };
+  /// Default
+  document.getElementById("student_default_dashboard").onclick = () => {
+    main_content.innerHTML = `  <div class="page-actions">
+            
 
-  localStorage.setItem("students", JSON.stringify(Students));
-  // window.alert(
-  //   ` Student ${input_new_student_Name} Marks is successfully added`,
-  // );
-}
-function disp_student_marks() {
-  let table = `
-            <table border="2">
+            <button class="btn btn-primary" type="button" id="student_Disp_data" >
+              Student Data
+            </button>
 
-                <tr>
-                    <th>Roll Number</th>
-                    <th> Name</th>
-                    <th> Physics</th>
-                    <th> Chemistry</th>
-                    <th>Maths</th>
+             <button class="btn btn-primary" type="button" id="disp_student_marks"  >Display Marks</button>
+              
+            <button class="btn btn-secondary">
+              <span>⬇️</span>
+              Import Students
+            </button>
 
-                </tr>
-        `;
+            <button class="btn btn-secondary">
+              <span>⬆️</span>
+              Export Students
+            </button>
+          </div>
 
-  Students.forEach(function (Students) {
-    table += `
-                <tr>
-                      <td>${Students.id}</td>
-                    <td>${Students.First_Name} ${Students.Last_Name}</td>
-                    <td>${Students.marks?.physics ?? "Not Added"}</td>
-                    <td>${Students.marks?.chemistry ?? "Not Added"}</td>
-                    <td>${Students.marks?.maths ?? "Not Added"}</td>
+         
+          <div class="card search-card">
+            <div class="search-card-header">Search Options</div>
+            
+            
+            <div class="search-options">
+              
+              <label class="search-option">
+                <input
+                  type="radio"
+                  name="searchType"
+                  id="search_using_roll"
+                  value="roll"
+                />
 
-                </tr>
-            `;
-  });
+                <span> Roll Number </span>
+              </label>
 
-  table += `</table>`;
+             </label></div>
+          </div>
 
-  studentTable.innerHTML = table;
-}
+            
+            <div class="student-search">
+              <span class="student-search-icon"> 🔍 </span>
+
+              <input
+                type="text"
+                id="search_Box"
+                placeholder="Search students..."
+              
+              />
+            </div>
+          
+          <div class="card student-list-card">
+            <div class="card-header">
+              <div class="card-title">Student List</div>
+
+              <div class="student-table-actions">
+                <button class="btn btn-secondary btn-small">Sort</button>
+
+                <button class="btn btn-secondary btn-small">Filter</button>
+
+                <button class="menu-dot">⋯</button>
+              </div>
+            </div>
+            <div id="studentTable" class="student-table-container">
+              <div class="coming-soon">
+                <p >Student data will be displayed here ...</p>
+              </div>
+                
+              </div>
+            </div>
+          </main>
+        </div>
+      </div> `;
+    document.getElementById("student_Disp_data").onclick = () => {
+      student_Disp_data();
+    };
+    document.getElementById("disp_student_marks").onclick = () => {
+      disp_student_marks();
+    };
+    document.getElementById("search_Box").oninput = () => {
+      search_Box();
+    };
+  };
+};

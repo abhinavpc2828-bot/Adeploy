@@ -7,10 +7,10 @@
     <title>Students - School Management System</title>
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
     <!-- Student Page CSS -->
-    <link rel="stylesheet" href="students.css" />
+    <link rel="stylesheet" href="css/students.css" />
   </head>
 
   <body>
@@ -24,7 +24,7 @@
 
         <nav class="sidebar-nav">
           <a
-            href="dashboard.html"
+            href="../Student_Management_system/future_features/dashboard.html"
             class="nav-item"
           >
             <span class="nav-icon">📊</span>
@@ -32,7 +32,7 @@
           </a>
 
           <a
-            href="/employee.html"
+            href="../Student_Management_system/future_features/employee.html"
             class="nav-item"
           >
             <span class="nav-icon">👔</span>
@@ -45,7 +45,7 @@
           </a>
 
           <a
-            href="parents.html"
+            href="../Student_Management_system/future_features/parents.html"
             class="nav-item"
           >
             <span class="nav-icon">👨‍👩‍👧</span>
@@ -53,7 +53,7 @@
           </a>
 
           <a
-            href="applications.html"
+            href="../Student_Management_system/future_features/applications.html"
             class="nav-item"
           >
             <span class="nav-icon">📋</span>
@@ -61,7 +61,7 @@
           </a>
 
           <a
-            href="academics.html"
+            href="../Student_Management_system/future_features/academics.html"
             class="nav-item"
           >
             <span class="nav-icon">📚</span>
@@ -69,7 +69,7 @@
           </a>
 
           <a
-            href="calendar.html"
+            href="../Student_Management_system/future_features/calendar.html"
             class="nav-item"
           >
             <span class="nav-icon">📅</span>
@@ -77,7 +77,7 @@
           </a>
 
           <a
-            href="records.html"
+            href="../Student_Management_system/future_features/records.html"
             class="nav-item"
           >
             <span class="nav-icon">📄</span>
@@ -87,7 +87,7 @@
 
         <div class="sidebar-bottom">
           <a
-            href="settings.html"
+            href="../Student_Management_system/future_features/settings.html"
             class="nav-item"
           >
             <span class="nav-icon">⚙️</span>
@@ -101,14 +101,70 @@
         <!-- HEADER -->
         <header class="header">
           <div class="header-left">
-            <button class="icon-button mobile-menu-button" id="mobileMenuBtn">
-              ☰
-            </button>
-
+           
             <h1 class="header-title">Students</h1>
           </div>
 
           <div class="header-right">
+             <!-- FLOATING STUDENT MENU -->
+
+<div class="student-floating-menu">
+
+  <button
+    class="icon-button mobile-menu-button student-menu-button"
+    id="side_bar_button"
+    type="button"
+  >
+    ☰
+  </button>
+
+  <div class="student-menu-options">
+
+    <button
+      class="student-menu-option"
+      id="student_default_dashboard"
+      type="button"
+    >
+      <span class="student-option-icon">👨‍🎓</span>
+
+      <span class="student-option-text">
+        <strong>Student Data</strong>
+        <small>View student information</small>
+      </span>
+    </button>
+
+
+    <button
+      class="student-menu-option"
+      id="new_Student_add_content_disp"
+      type="button"
+    >
+      <span class="student-option-icon">➕</span>
+
+      <span class="student-option-text">
+        <strong>Add Student</strong>
+        <small>Add a new student</small>
+      </span>
+    </button>
+
+
+    <button
+      class="student-menu-option"
+      id="add_student_marks_content_disp"
+      type="button"
+    >
+      <span class="student-option-icon">📝</span>
+
+      <span class="student-option-text">
+        <strong>Add Marks</strong>
+        <small>Add student marks</small>
+      </span>
+    </button>
+
+  </div>
+
+</div>
+             
             <button class="icon-button">🔔</button>
 
             <div class="user-profile">
@@ -122,22 +178,18 @@
             </div>
           </div>
         </header>
-
+       
         <!-- ================= MAIN CONTENT ================= -->
-        <main class="main-content">
+        <main class="main-content" id="main_content">
           <!-- PAGE ACTIONS -->
           <div class="page-actions">
-             <button class="btn btn-primary" type="button"  onclick="new_Student_add_content_disp()">
-              <span>+</span>
-               Add Student
-            </button>
-                         <button class="btn btn-primary" type="button"   onclick="add_student_marks_content_disp()">+Add Marks</button>
+            
 
-            <button class="btn btn-primary" type="button" id="displayBtn" onclick="student_Disp_data()">
+            <button class="btn btn-primary" type="button" id="student_Disp_data"  onclick="student_Disp_data()" >
               Student Data
             </button>
 
-             <button class="btn btn-primary" type="button" id="display_marks"  onclick="disp_student_marks()">Display Marks</button>
+             <button class="btn btn-primary" type="button" id="disp_student_marks" onclick="disp_student_marks()"  >Display Marks</button>
               
             <button class="btn btn-secondary">
               <span>⬇️</span>
@@ -179,7 +231,7 @@
                 type="text"
                 id="search_Box"
                 placeholder="Search students..."
-                oninput="search_Student()"
+                oninput="search_Box()"
               />
             </div>
           <!-- ================= STUDENT TABLE ================= -->
