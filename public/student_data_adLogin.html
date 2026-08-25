@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Portal Login - Schooling Management</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        padding: 20px;
+      }
+
+      .login-card {
+        width: 100%;
+        max-width: 420px;
+        background: #ffffff;
+        border-radius: var(--radius-xl);
+        padding: 40px 32px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .login-header {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .login-logo {
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, #3b82f6, #6366f1);
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        margin: 0 auto 16px;
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+      }
+
+      .login-title {
+        font-family: var(--font-heading);
+        font-size: 24px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 6px;
+      }
+
+      .login-subtitle {
+        font-size: 13.5px;
+        color: #64748b;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: #334155;
+        margin-bottom: 6px;
+      }
+
+      .form-input {
+        width: 100%;
+        height: 46px;
+        padding: 0 16px;
+        border: 1.5px solid #e2e8f0;
+        border-radius: var(--radius-md);
+        font-size: 14px;
+        font-family: inherit;
+        outline: none;
+        transition: all 0.2s ease;
+      }
+
+      .form-input:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+      }
+
+      .login-btn {
+        width: 100%;
+        height: 48px;
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        color: #ffffff;
+        border: none;
+        border-radius: var(--radius-md);
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-top: 10px;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      }
+
+      .login-btn:hover {
+        background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+      }
+
+      .hint-box {
+        margin-top: 24px;
+        padding: 12px;
+        background: #f8fafc;
+        border-radius: var(--radius-md);
+        border: 1px dashed #cbd5e1;
+        font-size: 12px;
+        color: #64748b;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-logo">📚</div>
+        <h2 class="login-title">Administrator Portal</h2>
+        <p class="login-subtitle">Sign in to manage student records &amp; grades</p>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="admin_Id">Admin Username</label>
+        <input class="form-input" type="text" id="admin_Id" placeholder="admin" autocomplete="username" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="pass_admin">Password</label>
+        <input class="form-input" type="password" id="pass_admin" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+
+      <button class="login-btn" type="button" id="login_button">Sign In to Dashboard &rarr;</button>
+
+      <div class="hint-box">
+        Default Demo Credentials: <strong>admin</strong> / <strong>1234</strong>
+      </div>
+    </div>
+
+    <script>
+      let fr_admin = "admin";
+      let fr_pass = "1234";
+      document.getElementById("login_button").onclick = () => {
+        user_enter_id = document.getElementById("admin_Id").value;
+        user_enter_pass = document.getElementById("pass_admin").value;
+
+        if (user_enter_id == fr_admin && user_enter_pass == fr_pass) {
+          window.location.href = "students.html";
+        } else if (user_enter_id == "" && user_enter_pass == "") {
+          window.alert("Please Enter a valid input");
+        } else {
+          window.alert("Wrong Credentials");
+        }
+      };
+    </script>
+  </body>
+</html>

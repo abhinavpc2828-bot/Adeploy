@@ -3,59 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - School Management System</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="inline-styles.css" />
+    <title>Executive Dashboard - School Management System</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/students.css" />
   </head>
   <body>
     <div class="container">
       <!-- SIDEBAR -->
       <aside class="sidebar">
-        <div class="sidebar-header">
-          <div class="sidebar-logo">📚</div>
-          <div class="sidebar-title">SCHOOLING</div>
+        <div>
+          <div class="sidebar-header">
+            <div class="sidebar-logo">📚</div>
+            <div class="sidebar-title">SCHOOLING</div>
+          </div>
+
+          <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item active">
+              <span class="nav-icon">📊</span>
+              <span>Dashboard</span>
+            </a>
+            <a href="employee.html" class="nav-item">
+              <span class="nav-icon">👔</span>
+              <span>Employee</span>
+            </a>
+            <a href="../students.html" class="nav-item">
+              <span class="nav-icon">👨‍🎓</span>
+              <span>Student</span>
+            </a>
+            <a href="parents.html" class="nav-item">
+              <span class="nav-icon">👨‍👩‍👧</span>
+              <span>Parent</span>
+            </a>
+            <a href="applications.html" class="nav-item">
+              <span class="nav-icon">📋</span>
+              <span>Applications</span>
+            </a>
+            <a href="academics.html" class="nav-item">
+              <span class="nav-icon">📚</span>
+              <span>Academics</span>
+            </a>
+            <a href="calendar.html" class="nav-item">
+              <span class="nav-icon">📅</span>
+              <span>Calendar</span>
+            </a>
+            <a href="records.html" class="nav-item">
+              <span class="nav-icon">📄</span>
+              <span>Records</span>
+            </a>
+          </nav>
         </div>
 
-        <nav class="sidebar-nav">
-          <a
-            href="dashboard.html"
-            class="nav-item active"
-            data-page="dashboard"
-          >
-            <span class="nav-icon">📊</span>
-            <span>Dashboard</span>
-          </a>
-          <a href="employee.html" class="nav-item" data-page="employee">
-            <span class="nav-icon">👔</span>
-            <span>Employee</span>
-          </a>
-          <a href="students.html" class="nav-item" data-page="student">
-            <span class="nav-icon">👨‍🎓</span>
-            <span>Student</span>
-          <a href="parents.html" class="nav-item" data-page="parent">
-            <span class="nav-icon">👨‍👩‍👧</span>
-            <span>Parent</span>
-          </a>
-          <a href="applications.html" class="nav-item" data-page="applications">
-            <span class="nav-icon">📋</span>
-            <span>Applications</span>
-          </a>
-          <a href="academics.html" class="nav-item" data-page="academics">
-            <span class="nav-icon">📚</span>
-            <span>Academics</span>
-          </a>
-          <a href="calendar.html" class="nav-item" data-page="calendar">
-            <span class="nav-icon">📅</span>
-            <span>Calendar</span>
-          </a>
-          <a href="records.html" class="nav-item" data-page="records">
-            <span class="nav-icon">📄</span>
-            <span>Records</span>
-          </a>
-        </nav>
-
         <div class="sidebar-bottom">
-          <a href="settings.html" class="nav-item" data-page="settings">
+          <a href="settings.html" class="nav-item">
             <span class="nav-icon">⚙️</span>
             <span>Settings</span>
           </a>
@@ -66,22 +65,12 @@
       <div class="main-wrapper">
         <header class="header">
           <div class="header-left">
-            <button
-              class="icon-button"
-              style="display: none"
-              id="mobileMenuBtn"
-            >
-              ☰
-            </button>
-            <h1 class="header-title">Dashboard</h1>
+            <h1 class="header-title">Executive Dashboard</h1>
+            <span class="header-badge">Overview</span>
           </div>
-        <marquee>This Feature will be available soon...</marquee>
+
           <div class="header-right">
-            <div class="search-box">
-              <span>🔍</span>
-              <input type="text" placeholder="Search..." />
-            </div>
-            <button class="icon-button">🔔</button>
+            <button class="icon-button" title="Notifications">🔔</button>
             <div class="user-profile">
               <div class="user-avatar">AD</div>
               <div class="user-info">
@@ -94,35 +83,60 @@
 
         <main class="main-content">
           <!-- TOP STATISTICS CARDS -->
-         
-
-
-         
-
-            <div class="stat-card cyan">
-              <div class="stat-card-content">
-                <div class="stat-label">Total Students</div>
-                <div class="stat-value" id="totalStudents"></div>
-                <div class="stat-change positive"></div>
+          <div class="stats-overview">
+            <div class="stat-box">
+              <div class="stat-box-info">
+                <span class="stat-box-label">Total Enrolled</span>
+                <span class="stat-box-value" id="totalStudents">12 Students</span>
               </div>
-              <div class="stat-icon">👨‍🎓</div>
+              <div class="stat-box-icon">👨‍🎓</div>
+            </div>
+
+            <div class="stat-box success">
+              <div class="stat-box-info">
+                <span class="stat-box-label">Faculty &amp; Staff</span>
+                <span class="stat-box-value">28 Active</span>
+              </div>
+              <div class="stat-box-icon">👔</div>
+            </div>
+
+            <div class="stat-box warning">
+              <div class="stat-box-info">
+                <span class="stat-box-label">Avg Attendance</span>
+                <span class="stat-box-value">94.8%</span>
+              </div>
+              <div class="stat-box-icon">📈</div>
+            </div>
+
+            <div class="stat-box purple">
+              <div class="stat-box-info">
+                <span class="stat-box-label">System Health</span>
+                <span class="stat-box-value">Optimal 🟢</span>
+              </div>
+              <div class="stat-box-icon">⚡</div>
             </div>
           </div>
 
-          <!-- QUICK ACTIONS -->
-          
-
-          <!-- MAIN GRID: Calendar + Right Panel -->
-        
-            <!-- RIGHT SIDE PANEL -->
-        
-              <!-- RECENT ACTIVITY -->
-             
-              <!-- WHAT'S NEW -->
-             
-
-          <!-- RECENTLY ADDED STUDENTS -->
-         
+          <!-- QUICK ACCESS CARD -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">🚀 Quick Management Navigation</div>
+            </div>
+            <div style="padding: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+              <a href="../students.html" class="btn btn-primary" style="padding: 16px; justify-content: flex-start; font-size: 14px;">
+                <span>👨‍🎓</span>
+                <span>Open Student Records Monitor &rarr;</span>
+              </a>
+              <a href="employee.html" class="btn btn-secondary" style="padding: 16px; justify-content: flex-start; font-size: 14px;">
+                <span>👔</span>
+                <span>View Employee Directory</span>
+              </a>
+              <a href="academics.html" class="btn btn-secondary" style="padding: 16px; justify-content: flex-start; font-size: 14px;">
+                <span>📚</span>
+                <span>Academic Curriculum</span>
+              </a>
+            </div>
+          </div>
         </main>
       </div>
     </div>

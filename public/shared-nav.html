@@ -16,7 +16,7 @@
       <span class="nav-icon">👔</span>
       <span>Employee</span>
     </a>
-    <a href="../students.html" class="nav-item" data-page="student">
+    <a href="students.html" class="nav-item" data-page="student">
             <span class="nav-icon">👨‍🎓</span>
             <span>Student</span>
     <a href="parents.html" class="nav-item" data-page="parent">
@@ -90,11 +90,11 @@
   // Show mobile menu button on smaller screens
   function checkScreenSize() {
     const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 768 ) {
       mobileMenuBtn.style.display = "flex";
     } else {
       mobileMenuBtn.style.display = "none";
-      closeSidebar();
+       closeSidebar();
     }
   }
 
