@@ -174,6 +174,7 @@ function updateTotalStudentCount() {
   const totalElem = document.getElementById("total_Student_numberDisp");
   if (totalElem) {
     totalElem.textContent = Students.length;
+    localStorage.setItem("totalStudents", Students.length);
   }
 }
 
