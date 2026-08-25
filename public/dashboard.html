@@ -87,7 +87,9 @@
             <div class="stat-box">
               <div class="stat-box-info">
                 <span class="stat-box-label">Total Enrolled</span>
-                <span class="stat-box-value" id="totalStudents">12 Students</span>
+               <span
+                  class="stat-box-value"
+                  id="total_Student_numberDisp"></span>
               </div>
               <div class="stat-box-icon">👨‍🎓</div>
             </div>
@@ -140,5 +142,22 @@
         </main>
       </div>
     </div>
+     <script>
+      function updateTotalStudentCount() {
+        let total_Students = localStorage.getItem("totalStudents");
+        const totalElem = document.getElementById("total_Student_numberDisp");
+
+        if (totalElem) {
+          totalElem.textContent = `${total_Students} Students`;
+        }
+      }
+
+     
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", updateTotalStudentCount);
+      } else {
+        updateTotalStudentCount();
+      }
+    </script>
   </body>
 </html>
