@@ -1,7 +1,7 @@
-// ============================================================
+
 // STUDENT MODULE - LOCALSTORAGE VERSION (students.js)
 // Handles Student State, Adding, Displaying, and Searching via localStorage
-// ============================================================
+
 
 // Load initial students from localStorage or fallback to default array
 let Students = JSON.parse(localStorage.getItem("students")) || [
