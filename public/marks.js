@@ -10,7 +10,7 @@ function loadStudentsIntoMarksSelect() {
   const select = document.getElementById("marks_student_select");
 
   if (!select) {
-    console.log("Marks student select not found.");
+    showStatus("Marks student select not found.", "error", "marks");
     return;
   }
 
@@ -57,15 +57,16 @@ function loadExistingMarksForSelectedStudent() {
     if (physicsInput) physicsInput.value = selectedStudent.marks.physics;
     if (chemistryInput) chemistryInput.value = selectedStudent.marks.chemistry;
     if (mathsInput) mathsInput.value = selectedStudent.marks.maths;
-    console.log(
-      `Loaded localStorage marks for student ${student_ID}:`,
-      selectedStudent.marks,
-    );
+    showStatus(`Loaded localStorage marks for student ${student_ID}.`, "info", "marks");
   } else {
     if (physicsInput) physicsInput.value = "";
     if (chemistryInput) chemistryInput.value = "";
     if (mathsInput) mathsInput.value = "";
-    console.log(`No existing marks for student ${student_ID}. Ready to add.`);
+    showStatus(
+      `No existing marks for student ${student_ID}. Ready to add.`,
+      "info",
+      "marks",
+    );
   }
 }
 
@@ -80,19 +81,23 @@ function add_student_marks() {
 
   const student_ID = Number(studentSelect.value);
   if (!student_ID) {
-    window.alert("Please select a student.");
+    showStatus("Please select a student.", "error", "marks");
     return;
   }
 
   const selectedStudent = Students.find((s) => s.id === student_ID);
   if (!selectedStudent) {
-    window.alert("Student not found.");
+    showStatus("Student not found.", "error", "marks");
     return;
   }
 
   // Check if marks already exist
   if (selectedStudent.marks && selectedStudent.marks.physics !== undefined) {
-    window.alert("Marks already exist for this student. Use Update Marks.");
+    showStatus(
+      "Marks already exist for this student. Use Update Marks.",
+      "warning",
+      "marks",
+    );
     return;
   }
 
@@ -110,8 +115,10 @@ function add_student_marks() {
   };
 
   localStorage.setItem("students", JSON.stringify(Students));
-  window.alert(
+  showStatus(
     `Marks successfully added for ${selectedStudent.First_Name} ${selectedStudent.Last_Name}`,
+    "success",
+    "marks",
   );
 }
 
@@ -120,7 +127,7 @@ function add_student_marks() {
 // ============================================================
 function validateMarksInputs(physicsVal, chemistryVal, mathsVal) {
   if (physicsVal === "" || chemistryVal === "" || mathsVal === "") {
-    window.alert("Please enter marks for all subjects.");
+    showStatus("Please enter marks for all subjects.", "error", "marks");
     return false;
   }
 
@@ -129,7 +136,7 @@ function validateMarksInputs(physicsVal, chemistryVal, mathsVal) {
   const m = Number(mathsVal);
 
   if (p < 0 || p > 100 || c < 0 || c > 100 || m < 0 || m > 100) {
-    window.alert("Marks must be between 0 and 100.");
+    showStatus("Marks must be between 0 and 100.", "error", "marks");
     return false;
   }
 
@@ -147,13 +154,13 @@ function update_student_marks() {
 
   const student_ID = Number(studentSelect.value);
   if (!student_ID) {
-    window.alert("Please select a student first.");
+    showStatus("Please select a student first.", "error", "marks");
     return;
   }
 
   const selectedStudent = Students.find((s) => s.id === student_ID);
   if (!selectedStudent) {
-    window.alert("Student not found.");
+    showStatus("Student not found.", "error", "marks");
     return;
   }
 
@@ -171,8 +178,10 @@ function update_student_marks() {
   };
 
   localStorage.setItem("students", JSON.stringify(Students));
-  window.alert(
+  showStatus(
     `Marks successfully updated for ${selectedStudent.First_Name} ${selectedStudent.Last_Name}`,
+    "success",
+    "marks",
   );
 }
 
@@ -187,13 +196,13 @@ function delete_student_marks() {
 
   const student_ID = Number(studentSelect.value);
   if (!student_ID) {
-    window.alert("Please select a student.");
+    showStatus("Please select a student.", "error", "marks");
     return;
   }
 
   const selectedStudent = Students.find((s) => s.id === student_ID);
   if (!selectedStudent) {
-    window.alert("Student not found.");
+    showStatus("Student not found.", "error", "marks");
     return;
   }
 
@@ -205,8 +214,10 @@ function delete_student_marks() {
   selectedStudent.marks = {};
   localStorage.setItem("students", JSON.stringify(Students));
 
-  window.alert(
+  showStatus(
     `Marks successfully deleted for ${selectedStudent.First_Name} ${selectedStudent.Last_Name}`,
+    "success",
+    "marks",
   );
 
   // Clear inputs

@@ -115,10 +115,6 @@ let Students = JSON.parse(localStorage.getItem("students")) || [
   },
 ];
 
-// Top action buttons
-const displayBtn = document.getElementById("student_Disp_data");
-const display_marks = document.getElementById("display_marks");
-
 // ============================================================
 // 1. UPDATE STUDENT COUNTER BADGE
 // ============================================================
@@ -147,7 +143,7 @@ function new_Student_add() {
     .toLowerCase();
 
   if (!input_new_student_Name) {
-    window.alert("Please enter student name.");
+    showStatus("Please enter student name.", "error", "student");
     return;
   }
 
@@ -165,13 +161,39 @@ function new_Student_add() {
     document.getElementById("student_age").value,
   );
 
+  // --- Validation (#8) ---
+  if (
+    !input_new_student_age ||
+    input_new_student_age < 3 ||
+    input_new_student_age > 100
+  ) {
+    showStatus("Please enter a valid age (3 – 100).", "error", "student");
+    return;
+  }
+  if (
+    !input_new_student_admitted ||
+    input_new_student_admitted < 1990 ||
+    input_new_student_admitted > new Date().getFullYear()
+  ) {
+    showStatus(
+      `Please enter a valid admission year (1990 – ${new Date().getFullYear()}).`,
+      "error",
+      "student",
+    );
+    return;
+  }
+
   const current_year = 2026 - input_new_student_admitted;
   let current_year_status =
     current_year === 0 ? "1st Year" : `${current_year + 1} Year`;
 
+  // Safe ID: derive max existing ID to avoid collisions on reload (#1)
+  const nextId =
+    Students.reduce((max, s) => Math.max(max, Number(s.id) || 0), 0) + 1;
+
   // Push new student into Students array
   Students.push({
-    id: Students.length + 1,
+    id: nextId,
     First_Name: first_name,
     Last_Name: last_name,
     age: input_new_student_age,
@@ -184,7 +206,11 @@ function new_Student_add() {
   localStorage.setItem("students", JSON.stringify(Students));
   updateTotalStudentCount();
 
-  window.alert(`New Student ${first_name} ${last_name} is successfully added`);
+  showStatus(
+    `New Student ${first_name} ${last_name} is successfully added`,
+    "success",
+    "student",
+  );
 
   // Clear inputs
   document.getElementById("student_name").value = "";
