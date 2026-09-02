@@ -73,7 +73,7 @@
         </div>
       </aside>
 
-      <!-- ================= MAIN WRAPPER ================= -->
+     <!-- ================= MAIN WRAPPER ================= -->
       <div class="main-wrapper">
         <!-- HEADER -->
         <header class="header">
@@ -132,10 +132,31 @@
 
             <button
               class="icon-button"
+              id="notifications_button"
               title="Notifications"
-              aria-label="Notifications">
+              aria-label="Notifications"
+              aria-expanded="false">
               🔔
+              <span class="notification-count" id="notification_count" hidden
+                >0</span
+              >
             </button>
+
+            <div class="notification-panel" id="notification_panel">
+              <div class="notification-panel-header">
+                <div>
+                  <strong>Notifications</strong>
+                  <small>Recent student and marks activity</small>
+                </div>
+                <button
+                  class="notification-clear-button"
+                  id="clear_all_notifications"
+                  type="button">
+                  Clear all
+                </button>
+              </div>
+              <div id="notification_panel_list"></div>
+            </div>
 
             <div class="user-profile">
               <div class="user-avatar">AD</div>
@@ -204,12 +225,34 @@
               <span>📊</span> Display Marks
             </button>
 
-            <button class="btn btn-secondary" type="button">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              id="btn_import_students"
+              onclick="
+                showStatus(
+                  'Import functionality will be available in the next release.',
+                  'info',
+                  'global',
+                )
+              ">
               <span>⬇️</span>
               Import Students
             </button>
 
-            <button class="btn btn-secondary" type="button">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              id="btn_export_records"
+              onclick="
+                showStatus(
+                  'Exported ' +
+                    Students.length +
+                    ' student records successfully.',
+                  'success',
+                  'global',
+                )
+              ">
               <span>⬆️</span>
               Export Records
             </button>
@@ -272,6 +315,29 @@
         </main>
       </div>
     </div>
+
+    <!-- ================= PERSISTENT GLOBAL STATUS BOX ================= -->
+    <!-- Lives outside #main_content so view switches never destroy it (#5) -->
+    <div
+      class="form-status-box"
+      id="global_status_box"
+      aria-label="System status notifications">
+      <div class="form-status-box-header">
+        <span id="global_status_title">System Status</span>
+        <span class="form-status-box-indicator">Live</span>
+      </div>
+      <div
+        class="status-container"
+        id="status_global_container"
+        aria-live="polite"></div>
+    </div>
+
+    <script src="status.js"></script>
+    <script src="students.js"></script>
+    <script src="marks.js"></script>
+    <script src="navigation.js"></script>
+  </body>
+</html>
 
     <script src="students.js"></script>
     <script src="marks.js"></script>
