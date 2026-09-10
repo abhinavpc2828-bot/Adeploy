@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart — AbG's Kitchen</title>
+    <link rel="stylesheet" href="styleoder.css" />
+  </head>
+  <body>
+    <!-- ========== HEADER / BRANDING ========== -->
+    <header class="site-header" id="site-header">
+      <div class="header-container">
+        <div class="brand-wrapper">
+          <div class="brand-logo">🍽️</div>
+          <div class="brand-info">
+            <h1>AbG's Kitchen</h1>
+            <p>Fresh flavors, made to order</p>
+          </div>
+        </div>
+        <div class="header-nav-actions">
+          <a
+            href="oderinghotel.html"
+            class="btn-back-menu"
+            id="back-to-menu-btn"
+            aria-label="Back to Menu">
+            ← Back to Menu
+          </a>
+          <div class="header-badges">
+            <span class="status-badge">
+              <span class="status-dot"></span>
+              Open Now
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========== MAIN CART PAGE CONTENT ========== -->
+    <main class="cart-page-main" id="cart-page">
+      <!-- Breadcrumb & Step Navigation Bar -->
+      <section class="cart-breadcrumb-bar" aria-label="Order progress">
+        <div class="cart-page-heading-group">
+          <h2>🛒 Review Your Cart</h2>
+          <p>
+            Verify your selected dishes, customize dining options, and checkout.
+          </p>
+        </div>
+        <nav class="cart-steps-indicator" aria-label="Checkout steps">
+          <span class="cart-step active">1. Cart Items</span>
+          <span class="cart-step-separator">›</span>
+          <span class="cart-step">2. Dining Options</span>
+          <span class="cart-step-separator">›</span>
+          <span class="cart-step">3. Confirmation</span>
+        </nav>
+      </section>
+
+      <!-- Two-Column Cart Grid -->
+      <div class="cart-grid-layout" id="cart-grid">
+        <!-- Left Column: Items & Customizations -->
+        <section
+          class="cart-left-col"
+          id="cart-left-section"
+          aria-label="Cart Items and Preferences">
+          <!-- Cart Items Container Card -->
+          <div class="cart-card" id="cart-items-card">
+            <div class="cart-card-header">
+              <div class="cart-card-title">
+                <span>Selected Items</span>
+                <span class="cart-card-count" id="cart-items-count-badge"
+                  >0 items</span
+                >
+              </div>
+              <button
+                type="button"
+                class="btn-clear-cart"
+                id="clear-all-cart-btn"
+                aria-label="Clear all items in cart">
+                🗑 Clear Cart
+              </button>
+            </div>
+
+            <!-- Populated dynamically via JS -->
+            <div class="cart-items-wrapper" id="cart-items-container"></div>
+
+            <!-- Empty State -->
+            <div
+              class="cart-empty-box"
+              id="cart-empty-state"
+              style="display: none">
+              <div class="cart-empty-icon">🛒</div>
+              <h3 class="cart-empty-title">Your cart is empty</h3>
+              <p class="cart-empty-desc">
+                Looks like you haven't added anything delicious yet. Check out
+                our freshly baked pizzas and juicy burgers!
+              </p>
+              <a
+                href="oderinghotel.html"
+                class="btn-explore-menu"
+                id="empty-explore-btn">
+                🍽️ Browse Menu
+              </a>
+            </div>
+          </div>
+
+          <!-- Dining Preference Options -->
+          <div class="cart-card" id="dining-preference-card">
+            <div class="cart-card-header">
+              <h3 class="cart-card-title">🍽️ Dining Preference</h3>
+            </div>
+            <div class="dining-options-grid" id="dining-options-group">
+              <label class="dining-option-pill active" id="dining-dinein-pill">
+                <input
+                  type="radio"
+                  name="dining_type"
+                  value="Dine-In"
+                  checked />
+                <span class="dining-pill-icon">🪑</span>
+                <span class="dining-pill-title">Dine-In</span>
+                <span class="dining-pill-sub">Eat at Table</span>
+              </label>
+
+              <label class="dining-option-pill" id="dining-takeaway-pill">
+                <input type="radio" name="dining_type" value="Takeaway" />
+                <span class="dining-pill-icon">🛍️</span>
+                <span class="dining-pill-title">Takeaway</span>
+                <span class="dining-pill-sub">Self Pick-up</span>
+              </label>
+
+              <label class="dining-option-pill" id="dining-delivery-pill">
+                <input type="radio" name="dining_type" value="Delivery" />
+                <span class="dining-pill-icon">🛵</span>
+                <span class="dining-pill-title">Delivery</span>
+                <span class="dining-pill-sub">To Doorstep</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Special Cooking / Delivery Notes -->
+          <div class="cart-card" id="order-notes-card">
+            <div class="cart-card-header">
+              <h3 class="cart-card-title">📝 Special Instructions</h3>
+            </div>
+            <textarea
+              id="order-notes-input"
+              class="cart-textarea"
+              placeholder="Any cooking requests? (e.g., extra crispy crust, less spicy, no onions, or delivery directions)"></textarea>
+          </div>
+        </section>
+
+        <!-- Right Column: Order Summary & Checkout -->
+        <aside
+          class="cart-sidebar-col"
+          id="cart-sidebar-section"
+          aria-label="Order Summary">
+          <div class="cart-card cart-summary-sticky" id="order-summary-card">
+            <div class="cart-card-header">
+              <h3 class="cart-card-title">🧾 Order Summary</h3>
+            </div>
+
+            <!-- Price Breakdown -->
+            <div class="summary-breakdown-list">
+              <div class="summary-row">
+                <span>Items Subtotal</span>
+                <span class="summary-row-val" id="summary-subtotal">₹0</span>
+              </div>
+              <div class="summary-row">
+                <span>GST / Taxes (5%)</span>
+                <span class="summary-row-val" id="summary-tax">₹0</span>
+              </div>
+              <div class="summary-row">
+                <span>Delivery & Packaging</span>
+                <span class="summary-free-badge" id="summary-delivery"
+                  >FREE</span
+                >
+              </div>
+              <div
+                class="summary-row discount-row"
+                id="summary-discount-row"
+                style="display: none">
+                <span>Discount (<span id="discount-label"></span>)</span>
+                <span class="summary-row-val" id="summary-discount"></span>
+              </div>
+
+              <hr class="summary-divider" />
+
+              <div class="summary-grand-total-row">
+                <span class="summary-grand-label">Grand Total</span>
+                <span class="summary-grand-amount" id="summary-grand-total"
+                  >₹0</span
+                >
+              </div>
+            </div>
+
+            <!-- Coupon Code Section -->
+            <div class="promo-box">
+              <input
+                type="text"
+                id="promo-code-input"
+                class="promo-input"
+                placeholder="PROMO CODE  eg:NEW100"
+                aria-label="Enter promo code" />
+              <button
+                type="button"
+                id="apply-promo-btn"
+                class="btn-apply-promo">
+                Apply
+              </button>
+            </div>
+            <p id="promo-message" class="promo-message"></p>
+
+            <!-- Customer Details Form -->
+            <div class="customer-info-section" id="customer-info-box">
+              <div class="customer-field-group">
+                <label class="customer-field-label" for="cust-name"
+                  >Your Full Name</label
+                >
+                <input
+                  type="text"
+                  id="cust-name"
+                  class="customer-input"
+                  placeholder="e.g. John Doe"
+                  required />
+              </div>
+              <div class="customer-field-group">
+                <label class="customer-field-label" for="cust-phone"
+                  >Phone Number</label
+                >
+                <input
+                  type="tel"
+                  id="cust-phone"
+                  class="customer-input"
+                  placeholder="e.g. 9876543210"
+                  required />
+              </div>
+              <div class="customer-field-group">
+                <label
+                  class="customer-field-label"
+                  for="cust-location"
+                  id="location-label">
+                  Table Number / Address
+                </label>
+                <input
+                  type="text"
+                  id="cust-location"
+                  class="customer-input"
+                  placeholder="e.g. Table 4 or Flat 102, Green Valley"
+                  required />
+              </div>
+            </div>
+
+            <!-- Place Order Button -->
+            <button type="button" class="btn-place-order" id="place-order-btn">
+              Place Order Now 🚀
+            </button>
+
+            <!-- Trust & Safety Footer -->
+            <div class="cart-trust-badges">
+              <span>🔒 100% Safe</span>
+              <span>⚡ Fast Kitchen Prep</span>
+              <span>🌿 Fresh Food</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- ========== ORDER CONFIRMATION MODAL ========== -->
+    <div
+      class="order-modal-backdrop"
+      id="order-success-modal"
+      role="dialog"
+      aria-modal="true">
+      <div class="order-modal-card">
+        <div class="order-modal-header">
+          <div class="order-modal-icon">🎉</div>
+          <h2 class="order-modal-title">Order Placed Successfully!</h2>
+          <p class="order-modal-desc">
+            Your order has been sent straight to the kitchen. Our chefs are
+            preparing your fresh food right now!
+          </p>
+        </div>
+
+        <div class="order-receipt-box">
+          <div class="order-receipt-row">
+            <span>Order ID:</span>
+            <strong id="receipt-order-id">#AGK-1082</strong>
+          </div>
+          <div class="order-receipt-row">
+            <span>Customer:</span>
+            <strong id="receipt-customer-name">-</strong>
+          </div>
+          <div class="order-receipt-row">
+            <span>Dining Mode:</span>
+            <strong id="receipt-dining-type">Dine-In</strong>
+          </div>
+          <div class="order-receipt-row">
+            <span>Location / Table:</span>
+            <strong id="receipt-location">-</strong>
+          </div>
+          <div class="order-receipt-row">
+            <span>Estimated Prep Time:</span>
+            <strong>15–20 Mins</strong>
+          </div>
+          <div class="order-receipt-row bold">
+            <span>Total Paid / Payable:</span>
+            <span id="receipt-total-amount">₹0</span>
+          </div>
+        </div>
+
+        <div class="order-modal-actions">
+          <a
+            href="oderinghotel.html"
+            class="btn-modal-menu"
+            id="modal-back-btn">
+            Order More Dishes 🍽️
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== CART LOGIC (FIXED & FULL-FEATURED JAVASCRIPT) ========== -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
+    <script src="cart.js"></script>
+  </body>
+</html>
