@@ -329,6 +329,7 @@ function display_content_marks_options() {
               </button>
             </div>`,
     );
+    removeFilterResults();
   } else if (filterSelect.value === "Total") {
     filterSelect.closest("label").insertAdjacentHTML(
       "afterend",
@@ -352,6 +353,7 @@ function display_content_marks_options() {
               </button>
             </div>`,
     );
+    removeFilterResults();
   } else {
     removeFilterResults();
   }
