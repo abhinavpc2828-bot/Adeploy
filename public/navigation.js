@@ -65,7 +65,7 @@ function initNavigation() {
 
             <label class="floating-input">
               <span class="floating-label">Year of Admission</span>
-              <input type="number" id="Y_o_Addmmited" placeholder="2021" min="1990" max="2030">
+              <input type="number" id="Y_o_Addmmited" placeholder="2021" min="2000" max="2030">
             </label>
 
             <button class="btn btn-primary student-add-btn" type="button" id="new_Student_add">
@@ -180,6 +180,62 @@ function initNavigation() {
       if (btnDelete) btnDelete.onclick = () => delete_student_marks();
     });
   }
+  // ---------------------------------------------
+  // VIEW D: FILTER STUDENTS BY MARKS
+  // ---------------------------------------------
+  const filterStudentsBtn = document.getElementById(
+    "add_student_filter_content_disp",
+  );
+  if (filterStudentsBtn) {
+    filterStudentsBtn.addEventListener("click", () => {
+      closeMenu();
+      const main_content = document.getElementById("main_content");
+      if (!main_content) return;
+
+      main_content.innerHTML = `
+        <div class="card student-form-card">
+          <div class="student-form-title">Filter Students by Marks</div>
+          <div class="student-form-subtitle">
+            Select a filter method, pick subject(s), enter a minimum score — results appear instantly.
+          </div>
+
+          <div class="form-status-box" id="status_filter_box" aria-label="Filter status messages">
+            <div class="form-status-box-header">
+              <span>Filter Status</span>
+              <span class="form-status-box-indicator">Live</span>
+            </div>
+            <div class="status-container" id="status_filter_container" aria-live="polite"></div>
+          </div>
+
+          <div class="student-form-grid">
+            <label class="floating-input">
+              <span class="floating-label">Filter Method</span>
+              <select id="filter_method_select" class="filter-method-select">
+                <option value="">-- Select Filter Method --</option>
+                <option value="Subject">Subject</option>
+                <option value="Total">Total Marks</option>
+                <option value="Attendance">Attendance</option>
+              </select>
+            </label>
+
+     
+          </div>
+        </div>
+
+        <div class="card filter-results-card">
+          <div class="card-header">
+            <div class="card-title">Filter Results</div>
+            <span id="filter_result_count" class="filter-result-badge" hidden></span>
+          </div>
+          <div id="studentTable" class="student-table-container">
+            <div class="coming-soon">
+              <p>Select a filter method above to see results…</p>
+            </div>
+          </div>
+        </div>`;
+
+    });
+  }
 
   // ---------------------------------------------
   // VIEW C: DEFAULT DASHBOARD VIEW
@@ -188,6 +244,7 @@ function initNavigation() {
   if (defaultDashBtn) {
     defaultDashBtn.addEventListener("click", () => {
       closeMenu();
+
       const main_content = document.getElementById("main_content");
       if (!main_content) return;
 
