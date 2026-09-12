@@ -96,6 +96,74 @@
   cursor: pointer;
 }
 
+.subject-filter-options {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+#subject_filter_options[hidden] {
+  display: none;
+}
+
+.subject-filter-control,
+.subject-filter-subjects {
+  min-width: 180px;
+}
+
+.filter-control {
+  width: 100%;
+  height: 32px;
+  padding: 6px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  font-size: 13.5px;
+  font-family: inherit;
+  color: var(--text-main);
+  background: #f8fafc;
+  outline: none;
+}
+
+select.filter-control {
+  cursor: pointer;
+}
+
+input.filter-control {
+  box-sizing: border-box;
+}
+
+.subject-filter-subjects {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.subject-filter-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  background: #f8fafc;
+  color: var(--text-main);
+  font-size: 13.5px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.subject-filter-option input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
 /* ==========================================================================
    Live Student Search Input
    ========================================================================== */
@@ -385,6 +453,11 @@
   grid-template-columns: 1fr;
   gap: 18px;
   margin-bottom: 24px;
+}
+
+.filter-results-card {
+  width: 100%;
+  margin-top: 24px;
 }
 
 .floating-input {
@@ -849,4 +922,155 @@ input[type="number"] {
     right: 8px;
     width: calc(100vw - 24px);
   }
+}
+
+/* ==========================================================================
+   Filter View — Select, Subject Panel, Checkboxes, Result Badge
+   ========================================================================== */
+
+/* Filter method select — match floating-input styling */
+.filter-method-select {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-main);
+  background: #ffffff;
+  outline: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+
+.filter-method-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+}
+
+/* Subject filter panel wrapper */
+.subject-filter-panel {
+  padding: 16px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: #f8fafc;
+  animation: fadeInScale 0.2s ease;
+}
+
+.subject-filter-panel[hidden] {
+  display: none;
+}
+
+/* Horizontal row of checkbox pills */
+.subject-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Each checkbox + label pair */
+.subject-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  cursor: pointer;
+}
+
+/* Hide the native checkbox visually — the pill handles state */
+.subject-checkbox-label input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The visible pill */
+.subject-checkbox-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  background: #ffffff;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.subject-checkbox-label:hover .subject-checkbox-pill {
+  border-color: var(--primary);
+  background: #eff6ff;
+  color: var(--primary);
+}
+
+/* Checked state: filled pill */
+.subject-checkbox-label
+  input[type="checkbox"]:checked
+  + .subject-checkbox-pill {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Focus ring for keyboard nav */
+.subject-checkbox-label
+  input[type="checkbox"]:focus-visible
+  + .subject-checkbox-pill {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Result badge pill next to card title */
+.filter-result-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.03em;
+}
+
+/* Filter results card header */
+.filter-results-card .card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-color);
+  background: #f8fafc;
+}
+
+.filter-results-card .card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* Mark cell colour coding */
+.mark-excellent {
+  color: #16a34a !important;
+  font-weight: 700 !important;
+}
+
+.mark-good {
+  color: #2563eb !important;
+  font-weight: 600 !important;
+}
+
+.mark-pass {
+  color: var(--text-main) !important;
 }
