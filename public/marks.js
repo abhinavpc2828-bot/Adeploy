@@ -57,7 +57,11 @@ function loadExistingMarksForSelectedStudent() {
     if (physicsInput) physicsInput.value = selectedStudent.marks.physics;
     if (chemistryInput) chemistryInput.value = selectedStudent.marks.chemistry;
     if (mathsInput) mathsInput.value = selectedStudent.marks.maths;
-    showStatus(`Loaded localStorage marks for student ${student_ID}.`, "info", "marks");
+    showStatus(
+      `Loaded localStorage marks for student ${student_ID}.`,
+      "info",
+      "marks",
+    );
   } else {
     if (physicsInput) physicsInput.value = "";
     if (chemistryInput) chemistryInput.value = "";
@@ -264,6 +268,300 @@ function disp_student_marks() {
         <td>${physics}</td>
         <td>${chemistry}</td>
         <td>${maths}</td>
+      </tr>
+    `;
+  });
+
+  table += `</table>`;
+  studentTable.innerHTML = table;
+}
+
+// ============================================================
+// 8. FILTER STUDENTS BY MARKS (Subject, Total, Attendance)
+// ============================================================
+
+/**
+ * Initializes and wires up the Marks Filter View controls.
+ * Called from navigation.js after rendering the filter view HTML template.
+ */
+function display_content_marks_options() {
+  const filterSelect = document.getElementById("filter_method_select");
+  if (!filterSelect) return;
+
+  const existingOptions = document.getElementById("subject_filter_options");
+  if (existingOptions) existingOptions.remove();
+
+  if (filterSelect.value === "Subject") {
+    filterSelect.closest("label").insertAdjacentHTML(
+      "afterend",
+      `<div id="subject_filter_options" class="subject-filter-panel">
+              <span class="floating-label" style="display:block; margin-bottom:10px;">
+                Select Subject(s) to filter by:
+              </span>
+              <div class="subject-checkbox-group">
+                <label class="subject-checkbox-label">
+                  <input type="checkbox" id="chk_physics"   value="physics"   class="subject-chk" />
+                  <span class="subject-checkbox-pill">⚛️ Physics</span>
+                </label>
+                <label class="subject-checkbox-label">
+                  <input type="checkbox" id="chk_chemistry" value="chemistry" class="subject-chk" />
+                  <span class="subject-checkbox-pill">🧪 Chemistry</span>
+                </label>
+                <label class="subject-checkbox-label">
+                  <input type="checkbox" id="chk_maths"     value="maths"     class="subject-chk" />
+                  <span class="subject-checkbox-pill">📐 Maths</span>
+                </label>
+              </div>
+
+              <label class="floating-input" style="margin-top:14px;">
+                <span class="floating-label">Minimum marks ≥ (0 – 100)</span>
+                <input
+                  type="number"
+                  id="filter_min_marks"
+                  min="0"
+                  max="100"
+                  placeholder="e.g. 75"
+                 
+                />
+              </label>
+              <button id="filter_marks_btn"  onclick="filterStudentsByMarks()"class="btn btn-primary" style="margin-top:10px;">
+                Filter Students
+              </button>
+            </div>`,
+    );
+  } else if (filterSelect.value === "Total") {
+    filterSelect.closest("label").insertAdjacentHTML(
+      "afterend",
+      `<div id="subject_filter_options" class="subject-filter-panel">
+              <span class="floating-label" style="display:block; margin-bottom:10px;">
+                Total Marks Filter (Physics + Chemistry + Maths)
+              </span>
+              <label class="floating-input" style="margin-top:14px;">
+                <span class="floating-label">Minimum total marks ≥ (0 – 300)</span>
+                <input
+                  type="number"
+                  id="filter_min_total_marks"
+                  min="0"
+                  max="300"
+                  placeholder="e.g. 200"
+                 
+                />
+              </label>
+              <button id="filter_total_marks_btn"   onclick="filterStudentsByTotalMarks()"class="btn btn-primary" style="margin-top:10px;">
+                Filter Students
+              </button>
+            </div>`,
+    );
+  } else {
+    removeFilterResults();
+  }
+}
+function getSelectedSubjects() {
+  const selectedSubjects = [];
+
+  const checkboxes = document.querySelectorAll(".subject-chk");
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+      selectedSubjects.push(checkbox.value);
+    }
+  });
+  /// console.log(selectedSubjects);
+  return selectedSubjects;
+}
+function filterStudentsByMarks() {
+  const selectedSubjects = getSelectedSubjects();
+  const minMarksInput = document
+    .getElementById("filter_min_marks")
+    .value.trim();
+
+  if (selectedSubjects.length === 0) {
+    showStatus(
+      "Please select at least one subject to filter by.",
+      "error",
+      "marks",
+    );
+    return;
+  }
+
+  if (minMarksInput === "" || minMarksInput === null) {
+    showStatus("Enter a minimum marks .", "error", "marks");
+    return;
+  }
+  const minMarks = Number(minMarksInput);
+
+  if (isNaN(minMarks) || minMarks < 0 || minMarks > 100) {
+    showStatus(
+      "Please enter a valid minimum marks value (0 – 100).",
+      "error",
+      "marks",
+    );
+    return;
+  }
+  const filteredStudents = Students.filter((student) => {
+    return selectedSubjects.every((subject) => {
+      const mark = student.marks?.[subject];
+      return mark !== undefined && mark >= minMarks;
+    });
+  });
+
+  if (filteredStudents.length === 0) {
+    showStatus(
+      "No students found matching the filter criteria.",
+      "info",
+      "marks",
+    );
+  } else {
+    showStatus(
+      `${filteredStudents.length} student(s) found matching the filter criteria.`,
+      "success",
+      "marks",
+    );
+  }
+
+  displayFilteredStudents(filteredStudents, selectedSubjects, minMarks);
+}
+function displayFilteredStudents(filteredStudents, selectedSubjects, minMarks) {
+  const studentTable = document.getElementById("studentTable");
+  if (!studentTable) return;
+
+  if (filteredStudents.length === 0) {
+    studentTable.innerHTML = `
+      <div class="coming-soon">
+        <p>No students found matching the filter criteria.</p>
+      </div>
+    `;
+    return;
+  }
+
+  const subjectLabels = {
+    physics: "Physics",
+    chemistry: "Chemistry",
+    maths: "Maths",
+  };
+
+  let table = `
+    <table border="2">
+      <tr>
+        <th>Roll Number</th>
+        <th>Name</th>
+        ${selectedSubjects.map((subject) => `<th>${subjectLabels[subject]}</th>`).join("")}
+      </tr>
+  `;
+
+  filteredStudents.forEach((student) => {
+    table += `
+      <tr>
+        <td>${student.id}</td>
+        <td>${student.First_Name} ${student.Last_Name}</td>
+        ${selectedSubjects
+          .map(
+            (subject) => `<td>${student.marks?.[subject] ?? "Not Added"}</td>`,
+          )
+          .join("")}
+      </tr>
+    `;
+  });
+
+  table += `</table>`;
+  studentTable.innerHTML = table;
+}
+
+document.addEventListener("change", (event) => {
+  if (event.target.id === "filter_method_select") {
+    display_content_marks_options();
+  }
+});
+
+function removeFilterResults() {
+  const studentTable = document.getElementById("studentTable");
+  if (!studentTable) return;
+
+  studentTable.innerHTML = `
+    <div class="coming-soon">
+      <p>Filter results cleared. Please select a filter method.</p>
+    </div>
+  `;
+}
+//////==============================
+///// total marks filter
+////==============================
+function filterStudentsByTotalMarks() {
+  const minTotalMarksInput = document
+    .getElementById("filter_min_total_marks")
+    .value.trim();
+
+  if (minTotalMarksInput === "" || minTotalMarksInput === null) {
+    showStatus("Enter a minimum total marks value.", "error", "marks");
+    return;
+  }
+  const minTotalMarks = Number(minTotalMarksInput);
+
+  if (isNaN(minTotalMarks) || minTotalMarks < 0 || minTotalMarks > 300) {
+    showStatus(
+      "Please enter a valid minimum total marks value (0 – 300).",
+      "error",
+      "marks",
+    );
+    return;
+  }
+
+  const filteredStudents = Students.filter((student) => {
+    const totalMarks =
+      (student.marks?.physics || 0) +
+      (student.marks?.chemistry || 0) +
+      (student.marks?.maths || 0);
+    return totalMarks >= minTotalMarks;
+  });
+
+  if (filteredStudents.length === 0) {
+    showStatus(
+      "No students found matching the total marks filter criteria.",
+      "info",
+      "marks",
+    );
+  } else {
+    showStatus(
+      `${filteredStudents.length} student(s) found matching the total marks filter criteria.`,
+      "success",
+      "marks",
+    );
+  }
+
+  displayFilteredStudentsByTotalMarks(filteredStudents, minTotalMarks);
+}
+function displayFilteredStudentsByTotalMarks(filteredStudents, _minTotalMarks) {
+  const studentTable = document.getElementById("studentTable");
+  if (!studentTable) return;
+
+  if (filteredStudents.length === 0) {
+    studentTable.innerHTML = `
+      <div class="coming-soon">
+        <p>No students found matching the total marks filter criteria.</p>
+      </div>
+    `;
+    return;
+  }
+
+  let table = `
+    <table border="2">
+      <tr>
+        <th>Roll Number</th>
+        <th>Name</th>
+        <th>Total Marks</th>
+      </tr>
+  `;
+
+  filteredStudents.forEach((student) => {
+    const totalMarks =
+      (student.marks?.physics || 0) +
+      (student.marks?.chemistry || 0) +
+      (student.marks?.maths || 0);
+
+    table += `
+      <tr>
+        <td>${student.id}</td>
+        <td>${student.First_Name} ${student.Last_Name}</td>
+        <td>${totalMarks}</td>
       </tr>
     `;
   });
