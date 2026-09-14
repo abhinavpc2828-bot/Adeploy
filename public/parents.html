@@ -60,14 +60,52 @@
         </div>
       </aside>
 
-      <div class="main-wrapper">
+    <div class="main-wrapper">
         <header class="header">
           <div class="header-left">
             <h1 class="header-title">Parent Guardian Portal</h1>
             <span class="header-badge">Guardian Info</span>
           </div>
           <div class="header-right">
-            <button class="icon-button" title="Notifications">🔔</button>
+            <div class="parent-floating-menu">
+              <button
+                class="icon-button parent-menu-button"
+                type="button"
+                title="Parent quick actions"
+                aria-label="Parent quick actions">
+                ☰
+              </button>
+              <div class="parent-menu-options">
+                <a class="parent-menu-option" href="#parent-directory">
+                  <span class="parent-option-icon">👨‍👩‍👧</span>
+                  <span>
+                    <strong>Parent Directory</strong>
+                    <small>View guardian records</small>
+                  </span>
+                </a>
+                <a class="parent-menu-option" href="#parent-search">
+                  <span class="parent-option-icon">🔍</span>
+                  <span>
+                    <strong>Find a Parent</strong>
+                    <small>Search contact information</small>
+                  </span>
+                </a>
+                <a class="parent-menu-option" href="#parent-communication">
+                  <span class="parent-option-icon">✉️</span>
+                  <span>
+                    <strong>Communication</strong>
+                    <small>Prepare a parent message</small>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <button
+              class="icon-button"
+              type="button"
+              title="Notifications"
+              aria-label="Notifications">
+              🔔
+            </button>
             <div class="user-profile">
               <div class="user-avatar">AD</div>
               <div class="user-info">
@@ -78,18 +116,174 @@
           </div>
         </header>
 
-        <main class="main-content">
-          <div class="card" style="padding: 40px; text-align: center;">
-            <div class="coming-soon">
-              <h2 style="font-family: var(--font-heading); font-size: 22px; margin-bottom: 8px; color: var(--text-main);">Parent &amp; Guardian Communications</h2>
-              <p style="margin-bottom: 20px;">Guardian contact records, notices, and progress reports dashboard.</p>
-              <a href="../students.html" class="btn btn-primary" style="margin: 0 auto; display: inline-flex;">
-                &larr; Return to Student Records Monitor
-              </a>
+        <main class="main-content parents-content">
+          <section class="parent-welcome">
+            <div>
+              <p class="section-kicker">Guardian services</p>
+              <h2>Keep every family connection in view.</h2>
+              <p>
+                Organize parent contact details, communication notes, and
+                student relationships from one workspace.
+              </p>
             </div>
-          </div>
+            <div class="welcome-mark" aria-hidden="true">♧</div>
+          </section>
+
+          <section
+            class="stats-overview parent-stats"
+            aria-label="Parent overview">
+            <div class="stat-box parent-stat parent-stat--coral">
+              <div class="stat-box-info">
+                <span class="stat-box-label">Parent Profiles</span>
+                <span class="stat-box-value">—</span>
+              </div>
+              <div class="stat-box-icon">👨‍👩‍👧</div>
+            </div>
+            <div class="stat-box parent-stat parent-stat--mint">
+              <div class="stat-box-info">
+                <span class="stat-box-label">Linked Students</span>
+                <span class="stat-box-value">—</span>
+              </div>
+              <div class="stat-box-icon">🎓</div>
+            </div>
+            <div class="stat-box parent-stat parent-stat--gold">
+              <div class="stat-box-info">
+                <span class="stat-box-label">Pending Follow-ups</span>
+                <span class="stat-box-value">—</span>
+              </div>
+              <div class="stat-box-icon">⏱️</div>
+            </div>
+            <div class="stat-box parent-stat parent-stat--blue">
+              <div class="stat-box-info">
+                <span class="stat-box-label">Reachable Contacts</span>
+                <span class="stat-box-value">—</span>
+              </div>
+              <div class="stat-box-icon">📞</div>
+            </div>
+          </section>
+
+          <section class="parent-actions" aria-label="Parent actions">
+            <a
+              class="parent-action-card parent-action-card--primary"
+              href="#parent-directory">
+              <span class="action-card-icon">📋</span>
+              <span
+                ><strong>Display Parent Data</strong
+                ><small>Browse guardian records</small></span
+              >
+              <span class="action-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="parent-action-card" href="#parent-search">
+              <span class="action-card-icon">🔎</span>
+              <span
+                ><strong>Search Parents</strong
+                ><small>Find by name or student</small></span
+              >
+              <span class="action-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="parent-action-card" href="#parent-communication">
+              <span class="action-card-icon">💬</span>
+              <span
+                ><strong>Communication Log</strong
+                ><small>Reserve space for notes</small></span
+              >
+              <span class="action-arrow" aria-hidden="true">↗</span>
+            </a>
+          </section>
+
+          <section class="card parent-search-card" id="parent-search">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Parent Search Desk</div>
+                <p class="card-subtitle">
+                  Choose a search method when the data layer is connected.
+                </p>
+              </div>
+              <span class="card-status">Ready for data</span>
+            </div>
+            <div class="parent-search-controls">
+              <label class="parent-search-option">
+                <input
+                  type="radio"
+                  name="parent-search-type"
+                  id="search_using_parent_name" />
+                <span>Parent name</span>
+              </label>
+              <label class="parent-search-option">
+                <input
+                  type="radio"
+                  name="parent-search-type"
+                  id="search_using_student_name" />
+                <span>Student name</span>
+              </label>
+              <label class="parent-search-option">
+                <input
+                  type="radio"
+                  name="parent-search-type"
+                  id="search_using_roll" />
+                <span>Roll number</span>
+              </label>
+            </div>
+            <div class="parent-search-input">
+              <span aria-hidden="true">⌕</span>
+              <input
+                type="text"
+                id="search_parent"
+                oninput="
+                  setTimeout(() => {
+                    Search_Parent();
+                  }, 200)
+                "
+                placeholder="Search parent or student records..."
+                aria-label="Search parent or student records" />
+            </div>
+          </section>
+
+          <section class="card parent-directory-card" id="parent-directory">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Parent Directory</div>
+                <p class="card-subtitle">
+                  A structured table area for parent records.
+                </p>
+              </div>
+              <button class="btn btn-secondary btn-small" type="button">
+                More filters
+              </button>
+            </div>
+            <div id="parentsTable">
+              <div class="coming-soon">
+                <p>Enter a parent or student name to search.</p>
+              </div>
+            </div>
+          </section>
+
+          <section
+            class="parent-feature-grid"
+            id="parent-communication"
+            aria-label="Parent feature areas">
+            <article class="parent-feature-card">
+              <span class="feature-icon">✉️</span>
+              <div>
+                <h3>Communication Log</h3>
+                <p>Space for calls, emails, meetings, and follow-up status.</p>
+              </div>
+              <span class="feature-badge">Planned</span>
+            </article>
+            <article class="parent-feature-card">
+              <span class="feature-icon">📎</span>
+              <div>
+                <h3>Documents</h3>
+                <p>Reserve a place for consent forms and shared files.</p>
+              </div>
+              <span class="feature-badge">Planned</span>
+            </article>
+          </section>
         </main>
       </div>
     </div>
+    <script src="students.js"></script>
+    <script src="parents.js"></script>
   </body>
 </html>
+
