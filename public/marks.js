@@ -15,9 +15,9 @@ function loadStudentsIntoMarksSelect() {
   }
 
   // Clear old options
-  select.innerHTML = `
-    <option value="">-- Select Student --</option>
-  `;
+  // select.innerHTML = `
+  //   <option value="">-- Select Student --</option>
+  // `;
 
   Students.forEach(function (student) {
     const option = document.createElement("option");
@@ -25,6 +25,8 @@ function loadStudentsIntoMarksSelect() {
     option.textContent = `${student.id} - ${student.First_Name} ${student.Last_Name}`;
     select.appendChild(option);
   });
+
+  loadExistingMarksForSelectedStudent();
 }
 
 // ============================================================
@@ -39,41 +41,48 @@ function loadExistingMarksForSelectedStudent() {
   if (!studentSelect) return;
 
   const student_ID = Number(studentSelect.value);
-
-  if (!student_ID) {
-    if (physicsInput) physicsInput.value = "";
-    if (chemistryInput) chemistryInput.value = "";
-    if (mathsInput) mathsInput.value = "";
-    return;
-  }
-
-  const selectedStudent = Students.find((s) => s.id === student_ID);
-
-  if (
-    selectedStudent &&
-    selectedStudent.marks &&
-    selectedStudent.marks.physics !== undefined
-  ) {
-    if (physicsInput) physicsInput.value = selectedStudent.marks.physics;
-    if (chemistryInput) chemistryInput.value = selectedStudent.marks.chemistry;
-    if (mathsInput) mathsInput.value = selectedStudent.marks.maths;
+  if (student_ID > Students.length) {
     showStatus(
-      `Loaded localStorage marks for student ${student_ID}.`,
-      "info",
+      `Student available till ${Students.length}... Enter Roll Number till  ${Students.length}`,
+      "error",
       "marks",
     );
   } else {
-    if (physicsInput) physicsInput.value = "";
-    if (chemistryInput) chemistryInput.value = "";
-    if (mathsInput) mathsInput.value = "";
-    showStatus(
-      `No existing marks for student ${student_ID}. Ready to add.`,
-      "info",
-      "marks",
-    );
+    if (!student_ID) {
+      if (physicsInput) physicsInput.value = "";
+      if (chemistryInput) chemistryInput.value = "";
+      if (mathsInput) mathsInput.value = "";
+      return;
+    }
+
+    const selectedStudent = Students.find((s) => s.id === student_ID);
+
+    if (
+      selectedStudent &&
+      selectedStudent.marks &&
+      selectedStudent.marks.physics !== undefined
+    ) {
+      if (physicsInput) physicsInput.value = selectedStudent.marks.physics;
+      if (chemistryInput)
+        chemistryInput.value = selectedStudent.marks.chemistry;
+      if (mathsInput) mathsInput.value = selectedStudent.marks.maths;
+      showStatus(
+        `Loaded localStorage marks for student ${student_ID}:${selectedStudent.First_Name} ${selectedStudent.Last_Name}.`,
+        "info",
+        "marks",
+      );
+    } else {
+      if (physicsInput) physicsInput.value = "";
+      if (chemistryInput) chemistryInput.value = "";
+      if (mathsInput) mathsInput.value = "";
+      showStatus(
+        `No existing marks for student ${student_ID}:${selectedStudent.First_Name} ${selectedStudent.Last_Name}. Ready to add.`,
+        "info",
+        "marks",
+      );
+    }
   }
 }
-
 // ============================================================
 // 3. ADD MARKS (localStorage)
 // ============================================================
