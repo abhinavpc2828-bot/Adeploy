@@ -123,10 +123,10 @@ function initNavigation() {
 
           <div class="student-form-grid">
             <label class="floating-input">
-              <span class="floating-label">Select Student</span>
-              <select id="marks_student_select" class="form-input" style="width: 100%; height: 44px; padding: 0 12px; border: 1.5px solid #e2e8f0; border-radius: 8px;">
-                <option value="">-- Select Student --</option>
-              </select>
+              <span class="floating-label">Add Student Roll Number </span>
+              <input id="marks_student_select" type="number" min="0" onchange="loadStudentsIntoMarksSelect()" on class="form-input" style="width: 100%; height: 44px; padding: 0 12px; border: 1.5px solid #e2e8f0; border-radius: 8px;">
+               
+              </input>
             </label>
 
             <label class="floating-input">
@@ -233,7 +233,6 @@ function initNavigation() {
             </div>
           </div>
         </div>`;
-
     });
   }
 
