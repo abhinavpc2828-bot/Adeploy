@@ -55,8 +55,7 @@
     visibility var(--transition-normal);
 }
 
-.parent-floating-menu:hover .parent-menu-options,
-.parent-floating-menu:focus-within .parent-menu-options {
+.parent-floating-menu.active .parent-menu-options {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -453,6 +452,180 @@
   line-height: 1.55;
 }
 
+.parent-form-card {
+  max-width: 980px;
+  margin: 0 auto 24px;
+  padding: 30px;
+  border: 1px solid #f0d4c9;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow-md);
+  animation: parentFormReveal 0.3s ease;
+}
+
+.parent-form-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.parent-form-title {
+  margin: 0;
+  color: var(--parent-ink);
+  font-family: var(--font-heading);
+  font-size: 24px;
+}
+
+.parent-form-subtitle {
+  margin-top: 6px;
+  color: var(--parent-muted);
+  font-size: 13px;
+}
+
+.parent-form-badge {
+  padding: 6px 10px;
+  border-radius: var(--radius-pill);
+  color: #257c72;
+  background: var(--parent-mint-soft);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.parent-form-notice {
+  display: grid;
+  gap: 3px;
+  margin-bottom: 24px;
+  padding: 12px 14px;
+  border-left: 4px solid var(--parent-coral);
+  background: var(--parent-coral-soft);
+  color: var(--parent-muted);
+  font-size: 12px;
+}
+
+.parent-form-notice strong {
+  color: var(--parent-ink);
+  font-size: 12.5px;
+}
+
+.parent-form-section {
+  padding: 20px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.parent-form-section h3 {
+  margin: 0 0 14px;
+  color: var(--parent-ink);
+  font-family: var(--font-heading);
+  font-size: 15px;
+}
+
+.parent-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.parent-form-grid--student {
+  grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.3fr);
+}
+
+.current-student {
+  grid-column: 1 / -1;
+  margin: -6px 0 0;
+  padding: 9px 12px;
+  border-left: 3px solid var(--parent-mint);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: #257c72;
+  background: var(--parent-mint-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.current-student--error {
+  border-left-color: var(--parent-coral);
+  color: #bb4d35;
+  background: var(--parent-coral-soft);
+}
+
+.parent-form-grid--address {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.parent-field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.parent-field--wide {
+  grid-column: span 3;
+}
+
+.parent-field > span {
+  color: var(--parent-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.parent-field b {
+  color: var(--parent-coral);
+}
+
+.parent-field input {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  outline: none;
+  color: var(--parent-ink);
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.parent-field input:focus {
+  border-color: var(--parent-coral);
+  box-shadow: 0 0 0 4px rgba(231, 111, 81, 0.12);
+}
+
+.parent-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+.parent-remove-btn {
+  border-color: #f3b4a5;
+  color: #bb4d35;
+  background: #fff7f4;
+}
+
+.parent-remove-btn:hover {
+  border-color: var(--parent-coral);
+  background: var(--parent-coral-soft);
+}
+
+@keyframes parentFormReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .parent-empty-state {
   display: grid;
   min-height: 190px;
@@ -567,5 +740,29 @@
   }
   .parent-search-input .btn {
     width: 100%;
+  }
+  .parent-form-card {
+    padding: 22px 18px;
+  }
+  .parent-form-heading {
+    display: block;
+  }
+  .parent-form-badge {
+    display: inline-block;
+    margin-top: 12px;
+  }
+  .parent-form-grid,
+  .parent-form-grid--student,
+  .parent-form-grid--address {
+    grid-template-columns: 1fr;
+  }
+  .parent-field--wide {
+    grid-column: auto;
+  }
+  .parent-form-actions {
+    justify-content: stretch;
+  }
+  .parent-form-actions .btn {
+    flex: 1 1 100%;
   }
 }
