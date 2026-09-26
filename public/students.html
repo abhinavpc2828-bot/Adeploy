@@ -73,7 +73,7 @@
         </div>
       </aside>
 
-      <!-- ================= MAIN WRAPPER ================= -->
+        <!-- ================= MAIN WRAPPER ================= -->
       <div class="main-wrapper">
         <!-- HEADER -->
         <header class="header">
@@ -291,7 +291,11 @@
                 type="text"
                 id="search_Box"
                 placeholder="Search students by name or roll number..."
-                oninput="search_Box()" />
+                oninput="
+                  setTimeout(() => {
+                    search_Box();
+                  })
+                " />
             </div>
           </div>
 
@@ -349,6 +353,7 @@
     <script src="navigation.js"></script>
   </body>
 </html>
+
 
 
   
