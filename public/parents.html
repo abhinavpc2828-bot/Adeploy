@@ -76,36 +76,57 @@
                 ☰
               </button>
               <div class="parent-menu-options">
-                <a class="parent-menu-option" href="#parent-directory">
+                <button class="parent-menu-option" id="default_parent_content">
                   <span class="parent-option-icon">👨‍👩‍👧</span>
                   <span>
                     <strong>Parent Directory</strong>
                     <small>View guardian records</small>
                   </span>
-                </a>
-                <a class="parent-menu-option" href="#parent-search">
+                </button>
+                <button class="parent-menu-option" id="add_parent_disp_content">
                   <span class="parent-option-icon">🔍</span>
                   <span>
-                    <strong>Find a Parent</strong>
-                    <small>Search contact information</small>
+                    <strong>Parent Details Update</strong>
+                    <small>Update/Add Parent information</small>
                   </span>
-                </a>
-                <a class="parent-menu-option" href="#parent-communication">
+                </button>
+                <button class="parent-menu-option">
                   <span class="parent-option-icon">✉️</span>
                   <span>
                     <strong>Communication</strong>
                     <small>Prepare a parent message</small>
                   </span>
-                </a>
+                </button>
               </div>
             </div>
             <button
               class="icon-button"
-              type="button"
+              id="notifications_button"
               title="Notifications"
-              aria-label="Notifications">
+              aria-label="Notifications"
+              aria-expanded="false">
               🔔
+              <span class="notification-count" id="notification_count" hidden
+                >0</span
+              >
             </button>
+
+            <div class="notification-panel" id="notification_panel">
+              <div class="notification-panel-header">
+                <div>
+                  <strong>Notifications</strong>
+                  <small>Recent student and marks activity</small>
+                </div>
+                <button
+                  class="notification-clear-button"
+                  id="clear_all_notifications"
+                  type="button">
+                  Clear all
+                </button>
+              </div>
+              <div id="notification_panel_list"></div>
+            </div>
+
             <div class="user-profile">
               <div class="user-avatar">AD</div>
               <div class="user-info">
@@ -116,7 +137,7 @@
           </div>
         </header>
 
-        <main class="main-content parents-content">
+        <main class="main-content parents-content" id="main_content_parent">
           <section class="parent-welcome">
             <div>
               <p class="section-kicker">Guardian services</p>
@@ -163,17 +184,18 @@
           </section>
 
           <section class="parent-actions" aria-label="Parent actions">
-            <a
+            <button
               class="parent-action-card parent-action-card--primary"
-              href="#parent-directory">
+              type="button"
+              id="display_parent_data">
               <span class="action-card-icon">📋</span>
               <span
                 ><strong>Display Parent Data</strong
                 ><small>Browse guardian records</small></span
               >
               <span class="action-arrow" aria-hidden="true">↗</span>
-            </a>
-            <a class="parent-action-card" href="#parent-search">
+            </button>
+            <a class="parent-action-card">
               <span class="action-card-icon">🔎</span>
               <span
                 ><strong>Search Parents</strong
@@ -181,7 +203,7 @@
               >
               <span class="action-arrow" aria-hidden="true">↗</span>
             </a>
-            <a class="parent-action-card" href="#parent-communication">
+            <a class="parent-action-card">
               <span class="action-card-icon">💬</span>
               <span
                 ><strong>Communication Log</strong
@@ -283,7 +305,10 @@
       </div>
     </div>
     <script src="students.js"></script>
+    <script src="navigation.js"></script>
+    <script src="status.js"></script>
     <script src="parents.js"></script>
   </body>
 </html>
+
 
